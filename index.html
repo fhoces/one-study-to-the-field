@@ -610,7 +610,8 @@ function heroTarget(s){
     var bs2 = Math.min(H / 3.3, W / 2.4, 190);
     return {x: W / 2, y: H / 2, s: bs2, gap: s === 8 ? 0 : GAP, lab: s === 8 ? 0 : 1};
   }
-  if (s === 11 || s === 12) return {x: W / 2, y: H / 2, s: Math.min(H / 7, W / 6, 80), gap: 0, lab: 0};
+  if (s === 11) return {x: W / 2, y: H / 2, s: Math.min(H / 7, W / 6, 80), gap: 0, lab: 0};
+  /* from step 12 the paper is small, in its cell; the rest of the field appears in step 13 (his note, 2026-11-23) */
   var p = L.pos(0);
   return {x: p.x, y: p.y, s: L.u, gap: 0, lab: 0};
 }
