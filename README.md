@@ -7,5 +7,5 @@ OPA, and the census of all quantitative analyses of AI and the US economy, score
 Open `index.html` in a browser, or see the published page. The page is self-contained: data, script and styles
 are inline.
 
-The page is built in the census project from `proposal/zoom/template.html` and the census data
-(`python3 proposal/zoom/build.py`), then copied here. Edit it there, not here.
+The page is built in the census project from `zoom/template.html` and the census data
+(`python3 zoom/build_field_data.py`, then `python3 zoom/build.py`), then copied here. Edit it there, not here.
