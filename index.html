@@ -216,6 +216,8 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 /* step 19 zoom (his word, 25 November night): the OPA cubes gather into a block that fills the figure; the rest fades */
 #svg.zm #cells .c:not(.mb),#svg.zm #extra .c,#svg.zm #frames .vfr.nm{opacity:0;pointer-events:none}
 .vfr{transition:opacity .4s ease}
+/* no frames for verification, nor their legend line (his word, 26 November) */
+#frames .vfr,.legend li[data-st="vf"]{display:none !important}
 .zbtn{display:none;position:absolute;top:0;right:0;z-index:4;font:inherit;font-size:13px;line-height:1.3;padding:3px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);cursor:pointer}
 .fig[data-step="19"] .zbtn.on{display:block}
 .zbtn:hover{border-color:var(--muted)}
@@ -620,7 +622,7 @@ function placeOverlay(){
     var x1 = a.x + ux * off, y1 = a.y + uy * off, x2 = b.x - ux * off, y2 = b.y - uy * off, ex = x1 + (x2 - x1) * gr, ey = y1 + (y2 - y1) * gr;
     var ln = g.querySelectorAll(".seg"), dt = g.querySelectorAll(".segd"), rr = 1.4 + 1.2 * zz;
     /* three stripes in the OPA colours, gold on top, then blue, then navy (his word, 26 November): thick enough to see */
-    var sw = Math.max(1.6, a.u * 0.13), px = -uy * sw, py = ux * sw;
+    var sw = Math.max(2.4, a.u * 0.195), px = -uy * sw, py = ux * sw;
     ln.forEach(function(l, m){ var o = m - 1; put(l, {x1: x1 + px * o, y1: y1 + py * o, x2: ex + px * o, y2: ey + py * o}); l.style.strokeWidth = (sw + 0.3) + "px"; });
     put(dt[0], {cx: x1, cy: y1, r: rr}); put(dt[1], {cx: x2, cy: y2, r: rr});
     dt[1].style.opacity = gr >= 1 ? 1 : 0;
@@ -762,7 +764,7 @@ function build(){
       el("rect", {"class": "vfr", x: -1.0, y: -1.15, width: 2.0, height: 2.3}, s);
     } else if (st === "link"){
       [-0.7, 0.7].forEach(function(x){ var cg = el("g", {"class": "c s-opa", transform: "translate(" + x + " 0) scale(0.4)"}, s); cube(cg, false); });
-      [["sg", -0.11], ["sd", 0], ["sm", 0.11]].forEach(function(q){ el("line", {"class": "seg " + q[0], x1: -0.36, y1: q[1], x2: 0.36, y2: q[1], style: "stroke-width:.12px"}, s); });
+      [["sg", -0.165], ["sd", 0], ["sm", 0.165]].forEach(function(q){ el("line", {"class": "seg " + q[0], x1: -0.36, y1: q[1], x2: 0.36, y2: q[1], style: "stroke-width:.18px"}, s); });
     } else {
       cube(el("g", {"class": "c " + (st === "tg" ? "s-closed tg" : st === "rp" ? "s-closed rp" : "s-" + st)}, s), false);
     }
