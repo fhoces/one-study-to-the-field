@@ -136,10 +136,12 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 .c.s-opa .o{stroke:var(--ink);stroke-width:1.4px}
 .c.tg .o{stroke:var(--ink);stroke-width:1.3px;stroke-dasharray:2.6 2.2;transform:scale(1.1)}
 #svg .c{transition:opacity .5s ease}
+/* from step 14 the OPA cube has no ink outline, as the other cubes (his point 5, 26 November); the legend swatches too.
+   The dashed outline of a target (.tg) stays: it is the sign of a target. */
+#svg.st14 .hero .o,#svg.st15 .hero .o,#svg.st16 .hero .o,#svg.st17 .hero .o,#svg.st18 .hero .o,#svg.st19 .hero .o,.legend .c.s-opa .o{stroke:var(--edge);stroke-width:1px}
 #svg .c.hv .o{stroke:var(--accent);stroke-width:2px;stroke-dasharray:none;transition:none}
 /* steps 1 and 2: only the one study */
-#svg.st1 #cells .c,#svg.st2 #cells .c,#svg.st3 #cells .c,#svg.st4 #cells .c,#svg.st5 #cells .c,#svg.st6 #cells .c,#svg.st7 #cells .c,#svg.st8 #cells .c,#svg.st9 #cells .c,#svg.st10 #cells .c,#svg.st11 #cells .c,#svg.st12 #cells .c,#svg.st13 #cells .c,#svg.st14 #cells .c{opacity:0}
-/* steps 11 and 12: the paper alone, no field yet (his answer of 2026-11-23) */
+#svg.st1 #cells .c,#svg.st2 #cells .c,#svg.st3 #cells .c,#svg.st4 #cells .c,#svg.st5 #cells .c,#svg.st6 #cells .c,#svg.st7 #cells .c,#svg.st8 #cells .c,#svg.st9 #cells .c,#svg.st10 #cells .c,#svg.st11 #cells .c,#svg.st12 #cells .c,#svg.st13 #cells .c,#svg.st14 #cells .c,#svg.st15 #cells .c{opacity:0}
 /* steps 1 to 3: two people, common facts, then two black boxes */
 #people{opacity:0;transition:opacity .4s ease;pointer-events:none}
 #svg.st2 #people,#svg.st3 #people,#svg.st4 #people,#svg.st8 #people{opacity:1}
@@ -148,7 +150,8 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 .fg circle{fill:currentColor}
 .fg rect{fill:var(--panel);stroke:currentColor;stroke-width:1.5px}
 .fg .sgn{fill:currentColor;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;text-anchor:middle}
-.plab.vlab{fill:currentColor;font-weight:600;font-size:12.5px}
+.plab.vlab{fill:currentColor;font-weight:600;font-size:14px}
+@media (max-width: 760px){ .plab.vlab{font-size:12.5px} }
 #svg.st3 .fgL,#svg.st8 .fgL{color:var(--va)} #svg.st3 .fgR,#svg.st8 .fgR{color:var(--vb)}
 #svg.st4 .fg{color:var(--un)}
 /* in step 3 the side each person took is still known: the sign keeps its ink, only the person fades */
@@ -160,14 +163,14 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 /* step 7: the two OPAs feed a third, the comparison, which both people read (as on the Proposition 40 slides) */
 .d7{opacity:0;transition:opacity .3s ease}
 #svg.st8 .d7{opacity:1;transition:opacity .5s ease .9s}
-#svg.st8 .d2 .samelab{opacity:0}
+#svg.st8 .d2 .samelab,#svg.st8 .d2.vlab,#svg.st8 .vlab{opacity:0}
 .arw{stroke:var(--ink);stroke-width:1.6px;fill:none}
 .arwh{fill:var(--ink);stroke:none}
 .tagbox{fill:var(--panel);stroke:var(--ink);stroke-width:1.5px}
 #svg .dtwin{opacity:0}
 #svg.st4 .dtwin{opacity:1}
 /* step 1: text only, no picture (his word, 25 November night); the figure keeps its size so the layout holds */
-.fig[data-step="1"]{visibility:hidden}
+.fig[data-step="1"],.fig[data-step="9"]{visibility:hidden}
 #svg.st1 .hero{opacity:0}
 #svg.st2 .hero{opacity:0}
 #svg.st4 .hero .ft{color:var(--k-top)} #svg.st4 .hero .fl{color:var(--k-left)} #svg.st4 .hero .fr{color:var(--k-right)}
@@ -180,31 +183,32 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 .plab.sub{font-weight:400;fill:var(--muted);font-size:12.5px}
 .shot{position:absolute;left:0;width:100%;object-fit:contain;object-position:center top;opacity:0;transition:opacity .4s ease;pointer-events:none;border-radius:4px}
 .fig[data-step="7"] .shot{opacity:1;transition:opacity .5s ease .9s}
-#svg.st15 .c:not(.hero){transition-delay:.45s}
+#svg.st16 .c:not(.hero){transition-delay:.45s}
 #svg.st1 .hero .ft,#svg.st5 .hero .ft{color:var(--k-top)} #svg.st1 .hero .fl,#svg.st5 .hero .fl{color:var(--k-left)} #svg.st1 .hero .fr,#svg.st5 .hero .fr{color:var(--k-right)}
 #svg.st1 .hero .o,#svg.st5 .hero .o{stroke:var(--edge);stroke-width:1px}
 #svg.st1 .hero .L0 .ft,#svg.st1 .hero .L1 .ft,#svg.st1 .hero .L2 .ft,#svg.st5 .hero .L0 .ft,#svg.st5 .hero .L1 .ft,#svg.st5 .hero .L2 .ft{opacity:0}
-#svg.st6 .hero .o,#svg.st10 .hero .o,#svg.st11 .hero .o,#svg.st12 .hero .o{opacity:0}
-#svg.st9 .hero .ft{color:var(--k-top)} #svg.st9 .hero .fl{color:var(--k-left)} #svg.st9 .hero .fr{color:var(--k-right)}
-#svg.st9 .hero .o{stroke:var(--edge);stroke-width:1px}
-#svg.st9 .hero .L0 .ft,#svg.st9 .hero .L1 .ft,#svg.st9 .hero .L2 .ft{opacity:0}
+#svg.st6 .hero .o,#svg.st11 .hero .o,#svg.st12 .hero .o,#svg.st13 .hero .o{opacity:0}
+/* step 10 (and the transition, step 9, hidden, so nothing fades when step 10 appears): the AI scenarios paper, closed */
+#svg.st9 .hero .ft,#svg.st10 .hero .ft{color:var(--k-top)} #svg.st9 .hero .fl,#svg.st10 .hero .fl{color:var(--k-left)} #svg.st9 .hero .fr,#svg.st10 .hero .fr{color:var(--k-right)}
+#svg.st9 .hero .o,#svg.st10 .hero .o{stroke:var(--edge);stroke-width:1px}
+#svg.st9 .hero .L0 .ft,#svg.st9 .hero .L1 .ft,#svg.st9 .hero .L2 .ft,#svg.st10 .hero .L0 .ft,#svg.st10 .hero .L1 .ft,#svg.st10 .hero .L2 .ft{opacity:0}
 /* step 9: the AI scenarios paper as published, as on the framework's Score Figures page (2026-11-23): output full;
    assumptions mostly there (front 70 percent solid, back 30 percent an outline: the authors' explorer), in line with
    the output; details full and set apart (shifted right); materials missing */
-#svg.st10 .hero .L0 .f{color:transparent;stroke:var(--muted);stroke-width:1.2px;stroke-dasharray:4 3}
-#svg.st10 .hero .L0 .lab{fill:var(--muted)}
+#svg.st11 .hero .L0 .f{color:transparent;stroke:var(--muted);stroke-width:1.2px;stroke-dasharray:4 3}
+#svg.st11 .hero .L0 .lab{fill:var(--muted)}
 .pz,.pzo{opacity:0;transition:opacity .4s ease}
 .pzo{fill:none;stroke:var(--muted);stroke-width:1.2px;stroke-dasharray:4 3;vector-effect:non-scaling-stroke;stroke-linejoin:round}
-#svg.st10 .hero .L2 .pz,#svg.st10 .hero .L2 .pzo,#svg.st11 .hero .L2 .pz,#svg.st11 .hero .L2 .pzo{opacity:1}
-#svg.st10 .hero .L2 .ft:not(.pz),#svg.st10 .hero .L2 .fl:not(.pz),#svg.st11 .hero .L2 .ft:not(.pz),#svg.st11 .hero .L2 .fl:not(.pz){opacity:0}
+#svg.st11 .hero .L2 .pz,#svg.st11 .hero .L2 .pzo,#svg.st12 .hero .L2 .pz,#svg.st12 .hero .L2 .pzo{opacity:1}
+#svg.st11 .hero .L2 .ft:not(.pz),#svg.st11 .hero .L2 .fl:not(.pz),#svg.st12 .hero .L2 .ft:not(.pz),#svg.st12 .hero .L2 .fl:not(.pz){opacity:0}
 /* step 11: made reproducible, the materials layer is added but the layers are not yet in line (panel 3 of the two-pager's figure) */
-#svg.st11 .hero .L0 .f{transition-delay:.3s}
-#svg.st12 .hero .L1 .f{transition-delay:.17s} #svg.st12 .hero .L2 .f{transition-delay:.34s} #svg.st12 .hero .L3 .f{transition-delay:.51s}
+#svg.st12 .hero .L0 .f{transition-delay:.3s}
+#svg.st13 .hero .L1 .f{transition-delay:.17s} #svg.st13 .hero .L2 .f{transition-delay:.34s} #svg.st13 .hero .L3 .f{transition-delay:.51s}
 #svg.st6 .hero .L1 .f{transition-delay:.17s} #svg.st6 .hero .L2 .f{transition-delay:.34s} #svg.st6 .hero .L3 .f{transition-delay:.51s}
-#svg.st7 .hero .o,#svg.st15 .hero .o{transition-delay:.8s}
-/* steps 13 and 14: how many there are, and the question whether they are open: the others are faint outlines */
-#svg.st15 .c:not(.hero) .f,#svg.st16 .c:not(.hero) .f{color:transparent}
-#svg.st15 .c:not(.hero) .o,#svg.st16 .c:not(.hero) .o{stroke:var(--faint)}
+#svg.st7 .hero .o,#svg.st16 .hero .o{transition-delay:.8s}
+/* step 16: how many there are, and the question whether they are open: the others are faint outlines */
+#svg.st16 .c:not(.hero) .f{color:transparent}
+#svg.st16 .c:not(.hero) .o{stroke:var(--faint)}
 /* step 15: the scored ones are known, all shown closed; which of them can be re-run comes in step 16 */
 #svg.st17 .c.s-rerun .ft{color:var(--k-top)} #svg.st17 .c.s-rerun .fl{color:var(--k-left)} #svg.st17 .c.s-rerun .fr{color:var(--k-right)}
 /* step 19: the OPA targets turn one at a time (the script adds the class one cube after the other), so no delay by index */
@@ -219,8 +223,9 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 .lab{font:700 .102px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.012px;fill:#fff;text-anchor:middle;pointer-events:none}
 /* a target comparison: a segment joining its two OPA cubes, as the arrows of step 7 without heads and without the third cube
    (his word, 25 November night; it was a frame around the pair), dashed as a target */
-.seg{stroke:var(--ink);stroke-width:1.6px;stroke-dasharray:5 3.5;fill:none;stroke-linecap:round}
-.segd{fill:var(--ink);stroke:none}
+.seg{stroke:var(--ink);stroke-width:1.6px;fill:none;stroke-linecap:butt}
+.seg.sg{stroke:var(--g-top)}.seg.sd{stroke:var(--d-top)}.seg.sm{stroke:var(--m-top)}
+.segd{display:none}
 #links{transition:opacity .4s ease .7s;opacity:0;pointer-events:none}
 #extra{display:none} #svg.st19 #extra{display:inline}
 .vfr{fill:none;stroke:var(--ink);stroke-width:1px;stroke-dasharray:2 1.6;vector-effect:non-scaling-stroke}
@@ -236,9 +241,20 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 .tip .tg2{margin-top:2px;font-style:italic}
 
 /* step 1: the opening text alone, across the whole page, centred (his word, 25 November night) */
-.stage[data-step="1"] .text{grid-column:1 / -1;grid-row:2;justify-self:center;align-self:safe center;width:100%;max-width:40rem}
-.panel.intro p{font-size:23px;line-height:1.55;margin:0 0 .9em}
+.stage[data-step="1"] .text,.stage[data-step="9"] .text{grid-column:1 / -1;grid-row:2;justify-self:center;align-self:safe center;width:100%;max-width:40rem}
+.panel.intro p{font-size:21px;line-height:1.5;margin:0 0 .8em}
 .panel.intro p:last-child{margin-bottom:0}
+/* step 1 title (his point 1, 26 November): large, centred, above the text */
+.panel.intro h1{font-size:44px;line-height:1.15;font-weight:700;letter-spacing:-.015em;text-align:center;margin:0 0 .55em}
+/* "dueling certitudes", both times: bold on a light tint of the accent colour */
+.panel.intro mark{font-weight:700;color:inherit;background:color-mix(in srgb, var(--accent) 16%, transparent);border-radius:3px;padding:0 .12em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* step 9: the turn from one debate to a whole field, one large tile in the centre, text only (his point 4, 26 November) */
+.stage[data-step="9"] .text{max-width:44rem}
+.panel.tile{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:44px 48px;text-align:center}
+.panel.tile p{font-size:24px;line-height:1.45;margin:0 0 .6em;text-wrap:balance}
+.panel.tile p.field{font-size:34px;line-height:1.2;margin:0}
+.panel.tile p.field strong{font-weight:750}
 /* step 7: clear link boxes over the three OPA cubes with their labels, and over the screenshot */
 .fig .hot{display:none;position:absolute;z-index:3;border-radius:8px;cursor:pointer;outline:none}
 .fig[data-step="7"] .hot{display:block}
@@ -276,7 +292,9 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
   .legend[data-legend="19"] li[data-st="tbf"]{grid-column:1 / -1}
   .legend[data-legend="19"]{font-size:12px;row-gap:2px;column-gap:12px}
   .panel[data-step="19"] .funds,.panel[data-step="19"] .note{font-size:13.5px;line-height:1.35}
-  .stage:has(.panel[data-step="19"]:not([hidden])){grid-template-rows:auto auto minmax(130px,1fr) auto}
+  /* steps 15 to 19: one text row, as tall as the step 19 panel with every box on (measured by the script, --tg), so the figure,
+     and the census grid in it, keep one size and place (his point 8, 26 November; short phones: see measureT19) */
+  .stage.gs{grid-template-rows:auto var(--tg,auto) minmax(0,1fr) auto}
   .panel[data-step="6"] .small{margin-bottom:4px;line-height:1.35}
   .panel[data-step="19"] .exrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 4px}
   .panel[data-step="19"] .exrow .lg{display:none} .panel[data-step="19"] .exrow .sh{display:inline}
@@ -288,8 +306,12 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
   .panel .bigscore strong{font-size:21px}
   .plab.big{font-size:16px}
   .note .advisers{display:none}
-  .stage[data-step="1"] .text{grid-row:2 / 4;align-self:safe center}
-  .panel.intro p{font-size:19px;line-height:1.5}
+  .stage[data-step="1"] .text,.stage[data-step="9"] .text{grid-row:2 / 4;align-self:safe center}
+  .panel.intro p{font-size:16px;line-height:1.45;margin-bottom:.7em}
+  .panel.intro h1{font-size:28px;margin-bottom:.45em}
+  .panel.tile{padding:28px 20px}
+  .panel.tile p{font-size:19px}
+  .panel.tile p.field{font-size:25px}
 }
 </style>
 </head>
@@ -303,7 +325,9 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 
   <div class="text" id="text" aria-live="polite">
     <section class="panel intro" data-step="1">
-      <p>Key policy debates are often based on alternative facts: wildly different numbers for the same costs and benefits. Each side arrives with its own estimate, and the public has no easy way to see why the estimates differ, or which one is most reasonable. This is called dueling certitudes. It hides where people truly disagree.</p>
+      <h1>AI and the Economy</h1>
+      <!-- the first paragraph of the two-pager, word for word (his point 1, 26 November) -->
+      <p>Key policy debates are often based on "alternative facts": wildly different numbers for the same costs and benefits. Each side of the debate arrives at the table with its own estimate, and the public has no easy way to understand why the estimates differ or which estimate might be the most reasonable. Long before this issue dominated our current political environment, this problem was termed "<mark>dueling certitudes</mark>" (Manski 2011). <mark>Dueling certitudes</mark> feed alternative facts and political polarization. They also hide where policy makers truly disagree. Only with a common set of facts can we learn how their valuations differ. With dueling numbers, a dispute over values looks like a dispute over facts, and neither can be settled.</p>
       <p>To illustrate, let's look at a specific and recent policy debate.</p>
     </section>
 
@@ -365,30 +389,35 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
       <p class="small">For Proposition 40, three inputs explain most of the gap.</p>
     </section>
 
-    <section class="panel" data-step="9" hidden>
-      <p class="kicker">Step 9</p>
-      <h2>Now, AI and the economy.</h2>
-      <p>As an example, let's look at a recent study, "Economic Scenarios for Transformative AI" (Korinek and others, 2026). It projects US GDP, the labor share, wages and unemployment to 2030 under three AI scenarios.</p>
+    <section class="panel tile" data-step="9" hidden>
+      <p>That was one policy debate. Now let's look at one whole field:</p>
+      <p class="field"><strong>The role of AI in the US economy.</strong></p>
     </section>
 
     <section class="panel" data-step="10" hidden>
       <p class="kicker">Step 10</p>
+      <h2>Now, AI and the economy.</h2>
+      <p>As an example, let's look at a recent study, "Economic Scenarios for Transformative AI" (Korinek and others, 2026). It projects US GDP, the labor share, wages and unemployment to 2030 under three AI scenarios.</p>
+    </section>
+
+    <section class="panel" data-step="11" hidden>
+      <p class="kicker">Step 11</p>
       <h2>The analysis as published.</h2>
       <p>The paper gives its equations and its parameters in detail. An online explorer lets readers change some of the assumptions within set ranges. No code or data were published.</p>
       <p>So the output and most of the assumptions are there, in line. The details are there but set apart: they do not lead to the output. The materials are missing.</p>
       <p class="bigscore">On the census scale: <strong>a score of 3 out of 7</strong>.</p>
     </section>
 
-    <section class="panel" data-step="11" hidden>
-      <p class="kicker">Step 11</p>
+    <section class="panel" data-step="12" hidden>
+      <p class="kicker">Step 12</p>
       <h2>Made reproducible.</h2>
       <p>The model was rebuilt from the paper in code that anyone can run, and its results were checked against the tables the paper publishes.</p>
       <p>The materials layer is added: an outsider can now re-run it.</p>
       <p class="small"><a href="https://fhoces.github.io/opa-ai-economy/improve.html" target="_blank" rel="noopener">Plans to make other studies of the census reproducible</a>.</p>
     </section>
 
-    <section class="panel" data-step="12" hidden>
-      <p class="kicker">Step 12</p>
+    <section class="panel" data-step="13" hidden>
+      <p class="kicker">Step 13</p>
       <h2>The same analysis, as an OPA.</h2>
       <ul class="layers">
         <li style="--sw:var(--m-top)"><a href="https://github.com/fhoces/opa-ai-macro-econ-scenarios" target="_blank" rel="noopener"><strong>Materials.</strong></a> The model, rebuilt from the paper, with its code public and 129 tests.</li>
@@ -398,28 +427,24 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
       <p class="small">The OPA: <a href="https://fhoces.github.io/opa-ai-macro-econ-scenarios/" target="_blank" rel="noopener">fhoces.github.io/opa-ai-macro-econ-scenarios/</a></p>
     </section>
 
-    <section class="panel" data-step="13" hidden>
-      <p class="kicker">Step 13</p>
+    <section class="panel" data-step="14" hidden>
+      <p class="kicker">Step 14</p>
       <h2>The next debate is not known yet.</h2>
       <p>We do not know which debate about AI and the economy will come next, or which analyses it will rest on.</p>
       <p>What can be done now is to track all of them and be ready: <a href="https://fhoces.github.io/opa-ai-economy/" target="_blank" rel="noopener">a census</a>.</p>
     </section>
 
-    <section class="panel" data-step="14" hidden>
-      <p class="kicker">Step 14</p>
+    <section class="panel" data-step="15" hidden>
+      <p class="kicker">Step 15</p>
       <h2>How many are out there?</h2>
       <p>The first question to ask: how many analyses put a number on an effect of AI on the US economy?</p>
     </section>
 
-    <section class="panel" data-step="15" hidden>
-      <p class="kicker">Step 15</p>
-      <h2><span data-n="total">869</span> analyses.</h2>
-      <p>As of the week of <span data-n="census_date">25 November 2026</span>, <a href="https://fhoces.github.io/opa-ai-economy/" target="_blank" rel="noopener">the census</a> lists <span data-n="total">869</span> quantitative analyses of AI and the US economy. Each cube is one of them.</p>
-    </section>
-
     <section class="panel" data-step="16" hidden>
       <p class="kicker">Step 16</p>
-      <h2>Are these analyses open?</h2>
+      <h2><span data-n="total">869</span> studies.</h2>
+      <p>As of the week of <span data-n="census_date">25 November 2026</span>, <a href="https://fhoces.github.io/opa-ai-economy/" target="_blank" rel="noopener">the census</a> lists <span data-n="total">869</span> quantitative studies of AI and the US economy. Each cube is one of them.</p>
+      <!-- the question of the old step 16 "Are these analyses open?", removed on 26 November (his point 7) -->
       <p>The next question: can someone outside the team run what the authors published?</p>
     </section>
 
@@ -593,8 +618,10 @@ function placeOverlay(){
        short phone it starts inside the cubes); in the whole census the cubes touch, so it runs from centre to centre */
     var off = zz * Math.max(0, Math.min(a.u * C * 1.08 + 2, (d - 8) / 2)), ux = vx / d, uy = vy / d, gr = segP[k] === undefined ? 1 : segP[k];
     var x1 = a.x + ux * off, y1 = a.y + uy * off, x2 = b.x - ux * off, y2 = b.y - uy * off, ex = x1 + (x2 - x1) * gr, ey = y1 + (y2 - y1) * gr;
-    var ln = g.querySelector(".seg"), dt = g.querySelectorAll(".segd"), rr = 1.4 + 1.2 * zz;
-    put(ln, {x1: x1, y1: y1, x2: ex, y2: ey});
+    var ln = g.querySelectorAll(".seg"), dt = g.querySelectorAll(".segd"), rr = 1.4 + 1.2 * zz;
+    /* three stripes in the OPA colours, gold on top, then blue, then navy (his word, 26 November): thick enough to see */
+    var sw = Math.max(1.6, a.u * 0.13), px = -uy * sw, py = ux * sw;
+    ln.forEach(function(l, m){ var o = m - 1; put(l, {x1: x1 + px * o, y1: y1 + py * o, x2: ex + px * o, y2: ey + py * o}); l.style.strokeWidth = (sw + 0.3) + "px"; });
     put(dt[0], {cx: x1, cy: y1, r: rr}); put(dt[1], {cx: x2, cy: y2, r: rr});
     dt[1].style.opacity = gr >= 1 ? 1 : 0;
   });
@@ -735,7 +762,7 @@ function build(){
       el("rect", {"class": "vfr", x: -1.0, y: -1.15, width: 2.0, height: 2.3}, s);
     } else if (st === "link"){
       [-0.7, 0.7].forEach(function(x){ var cg = el("g", {"class": "c s-opa", transform: "translate(" + x + " 0) scale(0.4)"}, s); cube(cg, false); });
-      el("line", {"class": "seg", x1: -0.3, y1: 0, x2: 0.3, y2: 0, style: "stroke-width:.13px;stroke-dasharray:.13 .08"}, s);
+      [["sg", -0.11], ["sd", 0], ["sm", 0.11]].forEach(function(q){ el("line", {"class": "seg " + q[0], x1: -0.36, y1: q[1], x2: 0.36, y2: q[1], style: "stroke-width:.12px"}, s); });
     } else {
       cube(el("g", {"class": "c " + (st === "tg" ? "s-closed tg" : st === "rp" ? "s-closed rp" : "s-" + st)}, s), false);
     }
@@ -755,33 +782,69 @@ function build(){
     b.type = "button"; b.dataset.size = s.key; b.textContent = s.label;
     sz.appendChild(b);
   });
+  drawTargets();
+}
+/* phones (one column): the text row of steps 15 to 19 keeps one height, so the figure, and the census in it, keep one size
+   and place (his point 8, 26 November). The height is that of the step 19 panel with every box and legend line on,
+   measured on a hidden copy. On a short phone (under 740 px tall) that would leave the census a strip of 3 px cubes,
+   so there steps 15 to 18 keep the height of the tallest of their own panels and step 19 has its own (smaller) grid;
+   inside step 19 the boxes still never rescale it. */
+var tKey = "", tH = {}, SHORT = 740;
+function panelH(n, text){
+  var c = document.querySelector('.panel[data-step="' + n + '"]').cloneNode(true);
+  c.removeAttribute("hidden");
+  c.querySelectorAll("[hidden]").forEach(function(e){ e.removeAttribute("hidden"); });
+  c.querySelectorAll("input").forEach(function(e){ e.checked = true; });
+  /* the copy keeps its ids for a moment: the styles of the list of boxes hang on them; it is removed at once */
+  c.style.cssText = "position:absolute;left:0;top:0;visibility:hidden;animation:none;width:" + text.clientWidth + "px";
+  text.appendChild(c);
+  var hh = Math.ceil(c.getBoundingClientRect().height);
+  text.removeChild(c);
+  return hh;
+}
+function shortPhone(){ return window.innerWidth <= 760 && window.innerHeight < SHORT; }
+function measureT19(){
+  var stage = document.getElementById("stage"), text = document.getElementById("text");
+  if (window.innerWidth > 760){ if (tKey !== "wide"){ stage.style.removeProperty("--tg"); tKey = "wide"; } return; }
+  var key = text.clientWidth + "x" + window.innerHeight;
+  if (key !== tKey){
+    tKey = key;
+    tH = {19: panelH(19, text), 15: Math.max(panelH(15, text), panelH(16, text), panelH(17, text), panelH(18, text))};
+  }
+  var want = (shortPhone() && step < 19 ? tH[15] : tH[19]) + "px";
+  if (stage.style.getPropertyValue("--tg") !== want) stage.style.setProperty("--tg", want);
 }
 function layout(){
+  measureT19();
   var r = fig.getBoundingClientRect();
   W = Math.max(120, r.width); H = Math.max(120, r.height);
   svg.setAttribute("viewBox", "0 0 " + W + " " + H);
   /* step 19: box 1 adds the band still to be found; box 2 adds three rows of new cubes, a row of their own each, at the
-     bottom (his word, 25 November night: "just show two or three more rows"); the legend keeps the real number */
+     bottom (his word, 25 November night: "just show two or three more rows"); the legend keeps the real number.
+     Since 26 November (his point 8: "I don't like the changes in the size of the census") the grid is laid out once
+     for every step, with room kept for the band, the three rows and the strip of the zoom button at the top, so the
+     census keeps one cube size and one place from step 15 to step 19 whatever the boxes; the extra cubes fill the
+     room kept for them. */
   var nt = step === 19 && B[1] ? CFG.tbf : 0, wk = step === 19 && B[2] ? NEWROWS : 0, base = D.length + nt;
-  /* step 19 keeps a strip at the top of the figure for the zoom button, so the button never covers a cube */
-  var top = step === 19 ? band() : 0;
+  var rbase = D.length + CFG.tbf, top = band();
   var best = null, pad = 6, w = W - 2 * pad, h = H - 2 * pad - top;
   for (var cols = 6; cols <= 120; cols++){
-    var px = w / cols, u = px * 0.84 / (2 * C), py = 2 * u * 1.1 + 1, rows = Math.ceil(base / cols) + wk;
+    var px = w / cols, u = px * 0.84 / (2 * C), py = 2 * u * 1.1 + 1, rows = Math.ceil(rbase / cols) + NEWROWS;
     if (rows * py <= h){ best = {cols: cols, px: px, py: py, u: u, rows: rows}; break; }
   }
-  if (!best){ best = {cols: 120, px: w / 120, u: w / 120 * 0.84 / (2 * C), rows: Math.ceil(base / 120) + wk}; best.py = 2 * best.u * 1.1 + 1; }
+  if (!best){ best = {cols: 120, px: w / 120, u: w / 120 * 0.84 / (2 * C), rows: Math.ceil(rbase / 120) + NEWROWS}; best.py = 2 * best.u * 1.1 + 1; }
   if (best.u > 13){
     best.u = 13; best.px = 13 * 2 * C / 0.84; best.py = 2 * 13 * 1.1 + 1;
-    best.cols = Math.max(6, Math.floor(w / best.px)); best.rows = Math.ceil(base / best.cols) + wk;
+    best.cols = Math.max(6, Math.floor(w / best.px)); best.rows = Math.ceil(rbase / best.cols) + NEWROWS;
   }
-  best.base = base; best.gap = wk ? Math.ceil(base / best.cols) * best.cols - base : 0;
+  /* the three weekly rows have rows of their own after the room of the band, so they do not move when box 1 changes */
+  best.base = base; best.gap = Math.ceil(rbase / best.cols) * best.cols - base;
   extras = extraList(nt, wk * best.cols);
   var n = D.length + extras.length;
   best.ox = pad + (w - best.cols * best.px) / 2;
   best.oy = pad + top + Math.max(0, (h - best.rows * best.py) / 2);
   best.pos = function(i){ return {x: best.ox + (i % best.cols + 0.5) * best.px, y: best.oy + (Math.floor(i / best.cols) + 0.5) * best.py}; };
-  /* the place of cube i in the grid: the new cubes start on a row of their own */
+  /* the place of cube i in the grid: the new cubes start on the first row after the room of the band */
   best.at = function(i){ return best.pos(i < best.base ? i : i + best.gap); };
   L = best;
   layoutPair();
@@ -810,12 +873,14 @@ function extraCell(kind, k){
   cube(g, false);
   return g;
 }
-function keyNow(){ return step === 19 ? [B[1], B[2], sizeKey, W, H].join() : "base" + W + "x" + H; }
+function keyNow(){ var r = fig.getBoundingClientRect(); return (step === 19 ? [B[1], B[2], sizeKey].join() : "base") + r.width + "x" + r.height; }
 /* steps 1 to 3: a row for the facts (one cube, then two) above two people */
 function duelGeo(){
   var s = Math.max(12, Math.min(H * 0.085, W / 11, 56));
   var hf = Math.max(64, Math.min(H * 0.34, W * 0.34, 230));
-  var gap = Math.max(16, Math.max(30, hf * 0.3) * 0.52 + 18), total = 2 * s + 24 + gap + hf + 26;   /* room for the sign under the number */
+  /* room for the sign under the number */
+  var gap = Math.max(16, Math.max(30, hf * 0.3) * 0.52 + 18), total = 2 * s + 24 + gap + hf + 26;
+  /* (the second line of a step 3 label on a phone uses the slack below; the check of step 3 keeps it inside the figure) */
   var top = Math.max(2, (H - total) / 2), dx = Math.min(W * 0.28, 230);
   return {s: s, hf: hf, cx: W / 2, cy: top + s, xl: W / 2 - dx, xr: W / 2 + dx, ft: top + 2 * s + 24 + gap};
 }
@@ -848,9 +913,26 @@ function placePerson(o, x, top, hf, dir){
   put(o.word, {x: hx, y: sy - h / 2}); o.word.style.fontSize = (h * 0.58).toFixed(1) + "px";
   o.lab.forEach(function(x2){ put(x2, {x: x, y: foot + 20}); });
 }
+/* a label set in lines no wider than maxW, centred on x, the first baseline at y */
+function wrapLabel(t, str, x, y, maxW){
+  while (t.firstChild) t.removeChild(t.firstChild);
+  var words = str.split(" "), lines = [], cur = "", lh = parseFloat(getComputedStyle(t).fontSize) * 1.25 || 16;
+  var probe = el("tspan", {}, t);
+  words.forEach(function(wd){
+    var tryS = cur ? cur + " " + wd : wd;
+    probe.textContent = tryS;
+    var wdt = 0; try { wdt = probe.getComputedTextLength(); } catch (e) {}
+    if (cur && wdt > maxW){ lines.push(cur); cur = wd; } else cur = tryS;
+  });
+  lines.push(cur);
+  t.removeChild(probe);
+  lines.forEach(function(ln, k){ var sp = el("tspan", {x: x.toFixed(2), dy: k ? lh.toFixed(1) : 0}, t); sp.textContent = ln; });
+  t.setAttribute("x", x.toFixed(2)); t.setAttribute("y", y.toFixed(2));
+}
 function buildPeople(){
-  P = {l: buildPerson("fgL", "YES", ["supports the tax", "", "values: unknown"]),
-       r: buildPerson("fgR", "NO", ["opposes the tax", "", "values: unknown"])};
+  /* step 3: under each person, a line in that person's colour (his point 3, 26 November) */
+  P = {l: buildPerson("fgL", "YES", ["supports the tax", "I want more redistribution", "values: unknown"]),
+       r: buildPerson("fgR", "NO", ["opposes the tax", "I want more certainty about taxes", "values: unknown"])};
   var d1 = mk("g", "d1", people);     /* step 1: the policy, where the facts will sit */
   P.tag = mk("rect", "tagbox", d1); P.t1 = mk("text", "plab", d1); P.t2 = mk("text", "plab sub", d1);
   P.t1.textContent = "Proposition 40"; P.t2.textContent = "a wealth tax";
@@ -873,16 +955,27 @@ function layoutPeople(){
   var g = duelGeo(), r = g.hf * 0.11;
   placePerson(P.l, g.xl, g.ft, g.hf, -1);
   placePerson(P.r, g.xr, g.ft, g.hf, 1);
-  /* step 2: the sign "Proposition 40, a wealth tax" about twice its first size (his word, 25 November night), centred
-     between the two people and above them: it shrinks only where the figure has no room (width, or the space above
-     the people's own signs) */
+  /* step 3: each value line wraps to stay within its own half and inside the figure */
+  [[P.l, g.xl, "I want more redistribution"], [P.r, g.xr, "I want more certainty about taxes"]].forEach(function(a){
+    var maxW = Math.max(60, Math.min(2 * Math.min(a[1], W - a[1]) - 8, (g.xr - g.xl) - 16, 240));
+    wrapLabel(a[0].lab[1], a[2], a[1], g.ft + g.hf + 20, maxW);
+  });
+  /* step 2: the sign "Proposition 40, a wealth tax". Since 26 November (his point 2) about half the size of the night
+     before (about 250 by 85 px on a laptop), "Proposition 40" about the size of a step title (24 px), "a wealth tax" a
+     little smaller, the box fitted to its text. On a phone everything scales down in proportion (it was twice its
+     first size; now its first size, with the type larger in it). Centred between the two people and above them. */
   var tw0 = Math.max(128, g.s * 4.4), th0 = Math.max(42, g.s * 1.5);
   var signTop = g.ft - 4 - Math.max(30, g.hf * 0.3) * 0.52, room = signTop - 10 - 4;
-  var k = Math.max(1, Math.min(2, (W - 16) / tw0, room / th0)), tw = tw0 * k, th = th0 * k;
+  var k = Math.max(0.5, Math.min(1, (W - 16) / tw0, room / th0)), sc = k * tw0 / 246.4;
+  var f1 = 24 * sc, f2 = 19.5 * sc;
+  P.t1.style.fontSize = f1.toFixed(1) + "px"; P.t2.style.fontSize = f2.toFixed(1) + "px";
+  P.t1.setAttribute("dominant-baseline", "central"); P.t2.setAttribute("dominant-baseline", "central");
+  var wt = 0; [P.t1, P.t2].forEach(function(t){ try { wt = Math.max(wt, t.getComputedTextLength()); } catch (e) {} });
+  if (!wt) wt = f1 * 7.6;
+  var h1 = f1 * 1.2, h2 = f2 * 1.2, padX = f1 * 1.15, padY = f1 * 0.68, tw = wt + 2 * padX, th = h1 + h2 + 2 * padY;
   var ty = Math.max(4 + th / 2, Math.min(g.cy, signTop - 10 - th / 2));
-  put(P.tag, {x: g.cx - tw / 2, y: ty - th / 2, width: tw, height: th, rx: 6 * k});
-  put(P.t1, {x: g.cx, y: ty + 3 - 5 * k}); put(P.t2, {x: g.cx, y: ty + 3 + 11 * k});
-  P.t1.style.fontSize = (14 * k).toFixed(1) + "px"; P.t2.style.fontSize = (12.5 * k).toFixed(1) + "px";
+  put(P.tag, {x: g.cx - tw / 2, y: ty - th / 2, width: tw, height: th, rx: 6 * sc});
+  put(P.t1, {x: g.cx, y: ty - th / 2 + padY + h1 / 2}); put(P.t2, {x: g.cx, y: ty - th / 2 + padY + h1 + h2 / 2});
   put(P.la, {x1: g.xl + r * 1.3, y1: g.ft - 2, x2: g.cx - g.s * 1.15, y2: g.cy + g.s * 0.45});
   put(P.lb, {x1: g.xr - r * 1.3, y1: g.ft - 2, x2: g.cx + g.s * 1.15, y2: g.cy + g.s * 0.45});
   /* the label goes above the cube when there is room, so the dotted lines do not run through it */
@@ -976,21 +1069,22 @@ function heroTarget(s){
     return {x: W / 2, y: H / 2, s: bs, gap: s === 6 ? GAP : 0, lab: s === 6 ? 1 : 0};
   }
   if (s === 7){ var g = pairGeo(); return {x: g.ax, y: g.y, s: g.s, gap: 0, lab: 0}; }
-  /* step 8: the two people again, around one coloured cube; steps 9 to 12: the AI scenarios paper, closed, as
-     published, made reproducible, as an OPA; step 13: the paper alone in the middle */
+  /* step 8: the two people again, around one coloured cube; step 9: the turn to the whole field, text only (the hidden
+     paper waits where step 10 shows it); steps 10 to 13: the AI scenarios paper, closed, as published, made
+     reproducible, as an OPA; step 14: the paper alone in the middle */
   if (s === 8){ var d7 = duelGeo(); return {x: d7.cx, y: d7.cy, s: d7.s, gap: 0, lab: 0}; }
-  if (s <= 12){
+  if (s <= 13){
     var bs2 = Math.min(H / 3.3, W / 2.4, 190);
-    /* step 10: the details layer sits apart, shifted right (58 of 112 half-widths on the framework page); the stack
+    /* step 11: the details layer sits apart, shifted right (58 of 112 half-widths on the framework page); the stack
        moves left by half of that so it stays centred */
-    if (s === 10) return {x: W / 2 - DXD / 2 * bs2, y: H / 2, s: bs2, gap: GAP, lab: 1, dx: [0, DXD, 0, 0]};
-    /* step 11: the materials layer added, shifted left and down, the details still to the right: not yet in line
+    if (s === 11) return {x: W / 2 - DXD / 2 * bs2, y: H / 2, s: bs2, gap: GAP, lab: 1, dx: [0, DXD, 0, 0]};
+    /* step 12: the materials layer added, shifted left and down, the details still to the right: not yet in line
        (panel 3 of the two-pager's figure, as stackSVG of the framework's Score Figures page) */
-    if (s === 11) return {x: W / 2, y: H / 2, s: Math.min(bs2, (W / 2 - 8) / (C + DXD)), gap: GAP, lab: 1, dx: [-DXD, DXD, 0, 0], dy: [DYM, 0, 0, 0]};
-    return {x: W / 2, y: H / 2, s: bs2, gap: s === 9 ? 0 : GAP, lab: s === 9 ? 0 : 1};
+    if (s === 12) return {x: W / 2, y: H / 2, s: Math.min(bs2, (W / 2 - 8) / (C + DXD)), gap: GAP, lab: 1, dx: [-DXD, DXD, 0, 0], dy: [DYM, 0, 0, 0]};
+    return {x: W / 2, y: H / 2, s: bs2, gap: s <= 10 ? 0 : GAP, lab: s <= 10 ? 0 : 1};
   }
-  if (s === 13) return {x: W / 2, y: H / 2, s: Math.min(H / 7, W / 6, 80), gap: 0, lab: 0};
-  /* from step 14 the paper is small, in its cell; the rest of the field appears in step 15 (his note, 2026-11-23) */
+  if (s === 14) return {x: W / 2, y: H / 2, s: Math.min(H / 7, W / 6, 80), gap: 0, lab: 0};
+  /* from step 15 the paper is small, in its cell; the rest of the field appears in step 16 (his note, 2026-11-23) */
   var p = zpos(0);   /* in step 19, where the zoom puts it */
   return {x: p.x, y: p.y, s: p.u, gap: 0, lab: 0};
 }
@@ -1070,7 +1164,7 @@ function drawTargets(){
   while (frames.firstChild) frames.removeChild(frames.firstChild);
   if (f && B[7]) pairs().forEach(function(ab){
     var g = el("g", {"class": "cmp", "data-a": ab[0], "data-b": ab[1]}, links);
-    el("line", {"class": "seg"}, g); el("circle", {"class": "segd"}, g); el("circle", {"class": "segd"}, g);
+    ["sg", "sd", "sm"].forEach(function(c){ el("line", {"class": "seg " + c}, g); }); el("circle", {"class": "segd"}, g); el("circle", {"class": "segd"}, g);
   });
   /* box 6: a dashed frame around every analysis that can be re-run and every OPA, today's and the targets */
   var nv = 0;
@@ -1121,10 +1215,13 @@ function setStep(n, anim){
   root.removeAttribute("data-ready");
   if (!anim) root.classList.add("noanim");
   svgClass();
-  if (keyNow() !== layoutKey) layout();
   fig.setAttribute("data-step", n);
-  document.getElementById("stage").setAttribute("data-step", n);
+  var stg = document.getElementById("stage");
+  stg.setAttribute("data-step", n);
+  stg.classList.toggle("gs", n >= 15);
+  measureT19();
   document.querySelectorAll(".panel").forEach(function(p){ p.hidden = +p.dataset.step !== n; });
+  if (keyNow() !== layoutKey) layout();
   document.querySelectorAll("#prog button").forEach(function(b){ b.classList.toggle("on", +b.dataset.go <= n); b.setAttribute("aria-current", +b.dataset.go === n ? "step" : "false"); });
   document.getElementById("num").textContent = n + " / " + NSTEP;
   document.getElementById("back").disabled = n === 1;
