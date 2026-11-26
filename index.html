@@ -207,11 +207,20 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 #svg.st15 .c:not(.hero) .o,#svg.st16 .c:not(.hero) .o{stroke:var(--faint)}
 /* step 15: the scored ones are known, all shown closed; which of them can be re-run comes in step 16 */
 #svg.st17 .c.s-rerun .ft{color:var(--k-top)} #svg.st17 .c.s-rerun .fl{color:var(--k-left)} #svg.st17 .c.s-rerun .fr{color:var(--k-right)}
-/* step 6: targets open a few at a time */
-#svg.st19 .c.tg .f,#svg.st19 .c.tg .o{transition-delay:calc(var(--i,0) * 11ms)}
+/* step 19: the OPA targets turn one at a time (the script adds the class one cube after the other), so no delay by index */
+#svg.st19 .c.tg .f,#svg.st19 .c.tg .o{transition-delay:0s;transition-duration:.3s}
+/* step 19 zoom (his word, 25 November night): the OPA cubes gather into a block that fills the figure; the rest fades */
+#svg.zm #cells .c:not(.mb),#svg.zm #extra .c,#svg.zm #frames .vfr.nm{opacity:0;pointer-events:none}
+.vfr{transition:opacity .4s ease}
+.zbtn{display:none;position:absolute;top:0;right:0;z-index:4;font:inherit;font-size:13px;line-height:1.3;padding:3px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);cursor:pointer}
+.fig[data-step="19"] .zbtn.on{display:block}
+.zbtn:hover{border-color:var(--muted)}
+.zbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .lab{font:700 .102px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.012px;fill:#fff;text-anchor:middle;pointer-events:none}
-/* a target comparison in the grid: a solid frame around its two analyses (his choice, 2026-11-23; the dashes mean a target cube) */
-.linkf{fill:none;stroke:var(--ink);stroke-width:1.5px}
+/* a target comparison: a segment joining its two OPA cubes, as the arrows of step 7 without heads and without the third cube
+   (his word, 25 November night; it was a frame around the pair), dashed as a target */
+.seg{stroke:var(--ink);stroke-width:1.6px;stroke-dasharray:5 3.5;fill:none;stroke-linecap:round}
+.segd{fill:var(--ink);stroke:none}
 #links{transition:opacity .4s ease .7s;opacity:0;pointer-events:none}
 #extra{display:none} #svg.st19 #extra{display:inline}
 .vfr{fill:none;stroke:var(--ink);stroke-width:1px;stroke-dasharray:2 1.6;vector-effect:non-scaling-stroke}
@@ -375,6 +384,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
       <h2>Made reproducible.</h2>
       <p>The model was rebuilt from the paper in code that anyone can run, and its results were checked against the tables the paper publishes.</p>
       <p>The materials layer is added: an outsider can now re-run it.</p>
+      <p class="small"><a href="https://fhoces.github.io/opa-ai-economy/improve.html" target="_blank" rel="noopener">Plans to make other studies of the census reproducible</a>.</p>
     </section>
 
     <section class="panel" data-step="12" hidden>
@@ -392,7 +402,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
       <p class="kicker">Step 13</p>
       <h2>The next debate is not known yet.</h2>
       <p>We do not know which debate about AI and the economy will come next, or which analyses it will rest on.</p>
-      <p>What can be done now is to track all of them and be ready: a census.</p>
+      <p>What can be done now is to track all of them and be ready: <a href="https://fhoces.github.io/opa-ai-economy/" target="_blank" rel="noopener">a census</a>.</p>
     </section>
 
     <section class="panel" data-step="14" hidden>
@@ -404,7 +414,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
     <section class="panel" data-step="15" hidden>
       <p class="kicker">Step 15</p>
       <h2><span data-n="total">869</span> analyses.</h2>
-      <p>As of the week of <span data-n="census_date">25 November 2026</span>, the census lists <span data-n="total">869</span> quantitative analyses of AI and the US economy. Each cube is one of them.</p>
+      <p>As of the week of <span data-n="census_date">25 November 2026</span>, <a href="https://fhoces.github.io/opa-ai-economy/" target="_blank" rel="noopener">the census</a> lists <span data-n="total">869</span> quantitative analyses of AI and the US economy. Each cube is one of them.</p>
     </section>
 
     <section class="panel" data-step="16" hidden>
@@ -416,7 +426,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
     <section class="panel" data-step="17" hidden>
       <p class="kicker">Step 17</p>
       <h2>For <span data-n="scored">188</span>, we know the answer.</h2>
-      <p><span data-n="scored">188</span> of the <span data-n="total">869</span> are scored so far, on a scale of 1 to 7. The other <span data-n="unscored">681</span> are not scored yet.</p>
+      <p><span data-n="scored">188</span> of the <span data-n="total">869</span> are scored so far, <a href="https://fhoces.github.io/opa-ai-economy/score.html" target="_blank" rel="noopener">on a scale of 1 to 7</a>. The other <span data-n="unscored">681</span> are not scored yet.</p>
       <ul class="legend" data-legend="17">
         <li data-st="closed"><span class="sw"></span><span>Scored</span><b data-count="scored">188</b></li>
         <li data-st="unscored"><span class="sw"></span><span>Not yet scored</span><b data-count="unscored">681</b></li>
@@ -426,7 +436,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
     <section class="panel" data-step="18" hidden>
       <p class="kicker">Step 18</p>
       <h2>Only <span data-n="rerun">15</span> can be re-run.</h2>
-      <p>Of the <span data-n="scored">188</span> scored, only <span data-n="rerun">15</span> can be re-run by an outsider with what the authors published. One has been made into an OPA.</p>
+      <p>Of the <span data-n="scored">188</span> scored, only <span data-n="rerun">15</span> <a href="https://fhoces.github.io/opa-ai-economy/score.html" target="_blank" rel="noopener">can be re-run by an outsider</a> with what the authors published. One has been made into an OPA.</p>
       <ul class="legend" data-legend="18">
         <li data-st="opa"><span class="sw"></span><span>Made into an OPA</span><b data-count="opa">1</b></li>
         <li data-st="rerun"><span class="sw"></span><span>Can be re-run with what the authors published (a score of 6 or 7 out of 7)</span><b data-count="rerun">15</b></li>
@@ -440,7 +450,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
       <p class="kicker">Step 19</p>
       <h2>What the proposal funds.</h2>
       <!-- from the two-page proposal, draft 10 of 25 November 2026, "What this proposal asks to fund" -->
-      <p class="funds">Every stage of the work, not only the OPAs. <a class="twopager" id="twopager" href="https://docs.google.com/document/d/143VmIYIYGVHTUScCy2xvYIklV7D-GaWvzIPUTvLJ5Q0/edit" target="_blank" rel="noopener">Read the two-page proposal.</a></p>
+      <p class="funds">Every stage of the work, not only the OPAs. <a class="twopager" id="twopager" href="https://docs.google.com/document/d/143VmIYIYGVHTUScCy2xvYIklV7D-GaWvzIPUTvLJ5Q0/edit" target="_blank" rel="noopener">Read the two-page proposal</a>, or <a href="https://fhoces.github.io/opa-ai-economy/" target="_blank" rel="noopener">see the census website</a>.</p>
       <ol class="stages" id="boxes" aria-label="What the proposal funds. Uncheck a part to take it out of the picture.">
         <li><label><input type="checkbox" data-box="1" checked> Complete the census.</label></li>
         <li><label><input type="checkbox" data-box="2" checked> Keep it current with a weekly update.</label></li>
@@ -478,6 +488,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
     <a class="hot" data-k="c" href="https://fhoces.github.io/opa-prop40/" target="_blank" rel="noopener" aria-label="The comparison of the two OPAs (opens in a new tab)"></a>
     <a class="hot" data-k="b" href="https://fhoces.github.io/opa-prop40/rjkdc-analysis/site/" target="_blank" rel="noopener" aria-label="The OPA of Jaros and Rauh (opens in a new tab)"></a>
     <a class="hot" data-k="s" href="https://fhoces.github.io/opa-prop40/comparison/site/explorer/" target="_blank" rel="noopener" aria-label="The comparison explorer for Proposition 40 (opens in a new tab)"></a>
+    <button type="button" class="zbtn" id="zbtn" aria-pressed="true">Show the whole census</button>
     <div class="tip" id="tip" hidden><div class="tt"></div><div class="tw"></div><div class="ts"></div><div class="tg2"></div></div>
   </div>
 
@@ -517,15 +528,143 @@ function tick19(k){
 function stopFill19(finish){
   fill19.forEach(clearTimeout); fill19 = []; tick19(0);
   if (finish){ for (var k = 1; k <= 7; k++) boxSet(k, true); }
+  finish19();
 }
 function playFill19(){
   played19 = true;
+  finish19();
   for (var k = 1; k <= 7; k++) boxSet(k, false);
-  redraw19();
+  zz = 0; redraw19();
   for (var j = 1; j <= 7; j++) (function(k){
-    fill19.push(setTimeout(function(){ if (step !== 19) return; boxSet(k, true); tick19(k); redraw19(); }, k * FILL_MS));
+    fill19.push(setTimeout(function(){ if (step !== 19) return; boxSet(k, true); tick19(k); boxEffect(k, animate); }, k * FILL_MS));
   })(j);
   fill19.push(setTimeout(function(){ fill19 = []; tick19(0); }, 7 * FILL_MS + 1000));
+}
+/* step 19 zoom (his words, 25 November night: "On the last two click into the opas and comparison. Zoom into only those
+   hexagons and change them."). The OPA cubes (today's OPA and the targets, the first cells of the grid) gather into a
+   block that fills the figure while the rest of the census fades; the grid is not cropped, because the targets fill
+   whole rows of it. zz runs from 0 (the whole census) to 1 (zoomed). The figure stays zoomed while box 5 is on, unless
+   the reader asks for the whole census with the button. */
+var zz = 0, Z = null, userOut = q.get("zoom") === "out", tgN = Infinity, segP = [], a19 = [], zr = 0, sr = 0;
+var ZOOM_MS = 800, TURN_MS = 1000, SEG_MS = 200, SEG_STAG = 25, ZX = 1.75, ZY = 1.42, ZCAP = 46;
+function zoomWant(){ return !!B[5] && !userOut; }
+function band(){ return W < 520 ? 30 : 34; }
+/* the block: as many columns as make the cubes largest, spaced three quarters of a cube apart so a comparison segment shows */
+function zoomGeo(){
+  var n = CFG.nopa + size().opas, pad = 8, top = band(), w = W - 2 * pad, h = H - top - 2 * pad, best = null;
+  for (var c = 1; c <= n; c++){
+    var r = Math.ceil(n / c), u = Math.min(w / (c * 2 * C * ZX), h / (r * 2 * ZY), ZCAP);
+    var asp = Math.abs(Math.log((c * 2 * C * ZX) / (r * 2 * ZY) / (w / h)));
+    if (!best || u > best.u + 0.01 || (Math.abs(u - best.u) <= 0.01 && asp < best.asp)) best = {c: c, r: r, u: u, asp: asp};
+  }
+  var z = {n: n, c: best.c, r: best.r, u: best.u, px: 2 * C * ZX * best.u, py: 2 * ZY * best.u};
+  z.ox = pad + (w - z.c * z.px) / 2; z.oy = top + pad + (h - z.r * z.py) / 2;
+  z.at = function(m){ return {x: z.ox + (m % z.c + 0.5) * z.px, y: z.oy + (Math.floor(m / z.c) + 0.5) * z.py}; };
+  return z;
+}
+/* where cube i is drawn at the present zoom, and its size */
+function zpos(i){
+  var g = L.at(i);
+  if (step !== 19 || !Z || i >= Z.n || zz <= 0) return {x: g.x, y: g.y, u: L.u};
+  var b = Z.at(i);
+  return {x: g.x + (b.x - g.x) * zz, y: g.y + (b.y - g.y) * zz, u: L.u + (Z.u - L.u) * zz};
+}
+function applyZoom(withHero){
+  svg.setAttribute("data-zoom", step === 19 && Z ? zz.toFixed(2) : "0");   /* read by the checks */
+  if (step !== 19 || !Z) return;
+  for (var i = 1; i < Z.n; i++){
+    var p = zpos(i);
+    cells[i].setAttribute("transform", "translate(" + p.x.toFixed(2) + " " + p.y.toFixed(2) + ") scale(" + p.u.toFixed(3) + ")");
+  }
+  if (withHero && !moving){ var h0 = zpos(0); applyHero({x: h0.x, y: h0.y, s: h0.u, g: [0, 0, 0, 0], lab: 0, dx: NODX, dy: NODX}); }
+  placeOverlay();
+}
+/* the box 6 frames and the comparison segments follow their cubes */
+function placeOverlay(){
+  if (step !== 19) return;
+  frames.querySelectorAll(".vfr").forEach(function(r){
+    var i = +r.dataset.i, p = zpos(i), pd = Math.max(1.2, p.u * (0.2 - 0.1 * zz));
+    r.classList.toggle("nm", !Z || i >= Z.n);
+    put(r, {x: p.x - p.u * C - pd, y: p.y - p.u * 1.1 - pd, width: 2 * (p.u * C + pd), height: 2 * (p.u * 1.1 + pd)});
+  });
+  links.querySelectorAll(".cmp").forEach(function(g, k){
+    var a = zpos(+g.dataset.a), b = zpos(+g.dataset.b), vx = b.x - a.x, vy = b.y - a.y, d = Math.sqrt(vx * vx + vy * vy) || 1;
+    /* zoomed in, from the edge of one cube to the edge of the other (as the arrows of step 7), never shorter than 8 px (on a
+       short phone it starts inside the cubes); in the whole census the cubes touch, so it runs from centre to centre */
+    var off = zz * Math.max(0, Math.min(a.u * C * 1.08 + 2, (d - 8) / 2)), ux = vx / d, uy = vy / d, gr = segP[k] === undefined ? 1 : segP[k];
+    var x1 = a.x + ux * off, y1 = a.y + uy * off, x2 = b.x - ux * off, y2 = b.y - uy * off, ex = x1 + (x2 - x1) * gr, ey = y1 + (y2 - y1) * gr;
+    var ln = g.querySelector(".seg"), dt = g.querySelectorAll(".segd"), rr = 1.4 + 1.2 * zz;
+    put(ln, {x1: x1, y1: y1, x2: ex, y2: ey});
+    put(dt[0], {cx: x1, cy: y1, r: rr}); put(dt[1], {cx: x2, cy: y2, r: rr});
+    dt[1].style.opacity = gr >= 1 ? 1 : 0;
+  });
+}
+/* animate the zoom to where it should be (in or out) */
+function zoomTo(anim, then){
+  var to = zoomWant() ? 1 : 0;
+  cancelAnimationFrame(zr); zr = 0;
+  svgClass();
+  if (!anim || zz === to){ zz = to; applyZoom(true); if (then) then(); return; }
+  var from = zz, t0 = performance.now();
+  function fr(now){
+    var t = Math.max(0, Math.min(1, (now - t0) / ZOOM_MS));
+    zz = from + (to - from) * ease(t); applyZoom(true);
+    if (t < 1) zr = requestAnimationFrame(fr); else { zr = 0; if (then) then(); }
+  }
+  hideTip();
+  zr = requestAnimationFrame(fr);
+}
+/* box 5: the targets turn into OPAs one by one, all within about a second, whatever their number */
+function setTg(){
+  var set = {};
+  if (step === 19 && B[5]) targets().forEach(function(i, r){ if (r < tgN) set[i] = 1; });
+  for (var i = 0; i < cells.length; i++) cells[i].classList.toggle("tg", !!set[i]);
+}
+function revealTargets(anim){
+  var n = size().opas;
+  if (!anim){ tgN = Infinity; setTg(); return; }
+  tgN = 0; setTg();
+  for (var r = 1; r <= n; r++) (function(r){
+    a19.push(setTimeout(function(){ if (step !== 19) return; tgN = r === n ? Infinity : r; setTg(); }, (r - 1) * TURN_MS / n));
+  })(r);
+}
+/* box 7: each segment grows from one cube to the other, one after the other */
+function growSegs(anim){
+  var k = links.querySelectorAll(".cmp").length;
+  cancelAnimationFrame(sr); sr = 0; segP = [];
+  if (!anim || !k){ placeOverlay(); return; }
+  for (var j = 0; j < k; j++) segP[j] = 0;
+  var t0 = performance.now();
+  function fr(now){
+    var done = true;
+    for (var j = 0; j < k; j++){ var t = Math.max(0, Math.min(1, (now - t0 - j * SEG_STAG) / SEG_MS)); segP[j] = ease(t); if (t < 1) done = false; }
+    placeOverlay();
+    if (!done) sr = requestAnimationFrame(fr); else { sr = 0; segP = []; }
+  }
+  sr = requestAnimationFrame(fr);
+}
+/* any step 19 animation still running jumps to its end */
+function finish19(){
+  a19.forEach(clearTimeout); a19 = [];
+  cancelAnimationFrame(zr); cancelAnimationFrame(sr); zr = sr = 0;
+  tgN = Infinity; segP = [];
+  if (step === 19){ zz = zoomWant() ? 1 : 0; redraw19(); }
+}
+/* a box was checked or unchecked (by the fill or the reader): its part of the picture, then the zoom */
+function boxEffect(k, anim){
+  if ((k === 5 || k === 7) && B[k]) userOut = false;
+  if (k === 5 && B[5] && anim) tgN = 0;
+  redraw19();
+  if (k === 5){
+    if (B[5]) zoomTo(anim, function(){ revealTargets(anim); });
+    else zoomTo(anim);
+  } else if (k === 7 && B[7]){ zoomTo(anim); growSegs(anim); }
+}
+function zbtnSync(){
+  var b = document.getElementById("zbtn"), z = zoomWant();
+  b.classList.toggle("on", step === 19 && !!B[5]);
+  b.textContent = z ? "Show the whole census" : "Zoom in on the OPAs";
+  b.setAttribute("aria-pressed", z ? "true" : "false");
 }
 /* step 19: the check boxes (all on at the start), the extra cubes (still to be found, new from the weekly update), the frames */
 var B = {1: true, 2: true, 3: true, 4: true, 5: true, 6: true, 7: true}, xg = null, frames = null, tbfCells = [], newCells = [], extras = [], layoutKey = "";
@@ -595,8 +734,8 @@ function build(){
       cube(el("g", {"class": "c s-rerun"}, s), false);
       el("rect", {"class": "vfr", x: -1.0, y: -1.15, width: 2.0, height: 2.3}, s);
     } else if (st === "link"){
-      [-0.5, 0.5].forEach(function(x){ var cg = el("g", {"class": "c s-opa", transform: "translate(" + x + " 0) scale(0.5)"}, s); cube(cg, false); });
-      el("rect", {"class": "linkf", x: -1.05, y: -0.68, width: 2.1, height: 1.36, rx: 0.3, style: "stroke-width:.12px"}, s);
+      [-0.7, 0.7].forEach(function(x){ var cg = el("g", {"class": "c s-opa", transform: "translate(" + x + " 0) scale(0.4)"}, s); cube(cg, false); });
+      el("line", {"class": "seg", x1: -0.3, y1: 0, x2: 0.3, y2: 0, style: "stroke-width:.13px;stroke-dasharray:.13 .08"}, s);
     } else {
       cube(el("g", {"class": "c " + (st === "tg" ? "s-closed tg" : st === "rp" ? "s-closed rp" : "s-" + st)}, s), false);
     }
@@ -624,7 +763,9 @@ function layout(){
   /* step 19: box 1 adds the band still to be found; box 2 adds three rows of new cubes, a row of their own each, at the
      bottom (his word, 25 November night: "just show two or three more rows"); the legend keeps the real number */
   var nt = step === 19 && B[1] ? CFG.tbf : 0, wk = step === 19 && B[2] ? NEWROWS : 0, base = D.length + nt;
-  var best = null, pad = 6, w = W - 2 * pad, h = H - 2 * pad;
+  /* step 19 keeps a strip at the top of the figure for the zoom button, so the button never covers a cube */
+  var top = step === 19 ? band() : 0;
+  var best = null, pad = 6, w = W - 2 * pad, h = H - 2 * pad - top;
   for (var cols = 6; cols <= 120; cols++){
     var px = w / cols, u = px * 0.84 / (2 * C), py = 2 * u * 1.1 + 1, rows = Math.ceil(base / cols) + wk;
     if (rows * py <= h){ best = {cols: cols, px: px, py: py, u: u, rows: rows}; break; }
@@ -638,7 +779,7 @@ function layout(){
   extras = extraList(nt, wk * best.cols);
   var n = D.length + extras.length;
   best.ox = pad + (w - best.cols * best.px) / 2;
-  best.oy = pad + Math.max(0, (h - best.rows * best.py) / 2);
+  best.oy = pad + top + Math.max(0, (h - best.rows * best.py) / 2);
   best.pos = function(i){ return {x: best.ox + (i % best.cols + 0.5) * best.px, y: best.oy + (Math.floor(i / best.cols) + 0.5) * best.py}; };
   /* the place of cube i in the grid: the new cubes start on a row of their own */
   best.at = function(i){ return best.pos(i < best.base ? i : i + best.gap); };
@@ -651,6 +792,10 @@ function layout(){
   }
   var on = {}; extras.forEach(function(c){ on[c.dataset.x] = 1; });
   tbfCells.concat(newCells).forEach(function(c){ c.classList.toggle("xoff", !on[c.dataset.x]); });
+  /* step 19: the block the OPA cubes gather into when zoomed */
+  Z = step === 19 ? zoomGeo() : null;
+  for (var m = 1; m < cells.length; m++) cells[m].classList.toggle("mb", !!Z && m < Z.n);
+  applyZoom(false);
   layoutKey = keyNow();
 }
 /* step 19: the cubes drawn after the census. Box 1 adds a band still to be found (its size is an illustration),
@@ -846,8 +991,8 @@ function heroTarget(s){
   }
   if (s === 13) return {x: W / 2, y: H / 2, s: Math.min(H / 7, W / 6, 80), gap: 0, lab: 0};
   /* from step 14 the paper is small, in its cell; the rest of the field appears in step 15 (his note, 2026-11-23) */
-  var p = L.pos(0);
-  return {x: p.x, y: p.y, s: L.u, gap: 0, lab: 0};
+  var p = zpos(0);   /* in step 19, where the zoom puts it */
+  return {x: p.x, y: p.y, s: p.u, gap: 0, lab: 0};
 }
 function applyHero(p){
   hero.setAttribute("transform", "translate(" + p.x.toFixed(2) + " " + p.y.toFixed(2) + ") scale(" + p.s.toFixed(3) + ")");
@@ -892,13 +1037,19 @@ function targets(){
   return list;
 }
 function pairs(){
+  /* two neighbouring targets, on one row of the grid and one row of the zoomed block, spread over the targets */
   var s = size(), first = CFG.nopa, out = [], used = {};
+  function fits(a){
+    var b = a + 1;
+    return a >= first && b < first + s.opas && !used[a] && !used[b] && Math.abs(L.at(a).y - L.at(b).y) < 0.5
+      && (!Z || Math.floor(a / Z.c) === Math.floor(b / Z.c));
+  }
   for (var k = 0; k < s.comps; k++){
-    var a = first + Math.floor((k + 0.5) * s.opas / s.comps) - 1, b = a + 1;
-    if (b >= first + s.opas || Math.floor(a / L.cols) !== Math.floor(b / L.cols)) { b = a; a = a - 1; }
-    if (used[a] || used[b] || a < first) continue;
-    used[a] = used[b] = 1;
-    out.push([a, b]);
+    var a0 = first + Math.floor((k + 0.5) * s.opas / s.comps) - 1;
+    for (var d = 0; d < 8; d++){
+      var a = a0 + (d % 2 ? -(d + 1) / 2 : d / 2);
+      if (fits(a)){ used[a] = used[a + 1] = 1; out.push([a, a + 1]); break; }
+    }
   }
   return out;
 }
@@ -909,26 +1060,24 @@ function reproList(){
   return out;
 }
 function cellAt(i){ return i < D.length ? cells[i] : extras[i - D.length]; }
-function frameRect(i, cls, parent){
-  var a = L.pos(i), pd = Math.max(1.2, L.u * 0.2);
-  return el("rect", {"class": cls, x: a.x - L.u * C - pd, y: a.y - L.u * 1.1 - pd, width: 2 * (L.u * C + pd), height: 2 * (L.u * 1.1 + pd)}, parent);
-}
 function drawTargets(){
   var f = step === 19, s = size(), set = {}, rp = {};
   if (f && B[5]) targets().forEach(function(i){ set[i] = 1; });
   if (f && B[4]) reproList().forEach(function(i){ rp[i] = 1; });
-  for (var i = 0; i < cells.length; i++){ cells[i].classList.toggle("tg", !!set[i]); cells[i].classList.toggle("rp", !!rp[i]); }
+  for (var i = 0; i < cells.length; i++) cells[i].classList.toggle("rp", !!rp[i]);
+  setTg();
   while (links.firstChild) links.removeChild(links.firstChild);
   while (frames.firstChild) frames.removeChild(frames.firstChild);
   if (f && B[7]) pairs().forEach(function(ab){
-    var a = L.pos(ab[0]), b = L.pos(ab[1]), g = el("g", {"class": "cmp"}, links), pd = Math.max(1.5, L.u * 0.22);
-    el("rect", {"class": "linkf", x: a.x - L.u * C - pd, y: a.y - L.u - pd, width: b.x - a.x + 2 * (L.u * C + pd), height: 2 * (L.u + pd), rx: L.u * 0.5}, g);
+    var g = el("g", {"class": "cmp", "data-a": ab[0], "data-b": ab[1]}, links);
+    el("line", {"class": "seg"}, g); el("circle", {"class": "segd"}, g); el("circle", {"class": "segd"}, g);
   });
   /* box 6: a dashed frame around every analysis that can be re-run and every OPA, today's and the targets */
   var nv = 0;
   if (f && B[6]) for (var j = 0; j < D.length; j++){
-    if (D[j].st === "rerun" || D[j].st === "opa" || set[j]){ frameRect(j, "vfr", frames); nv++; }
+    if (D[j].st === "rerun" || D[j].st === "opa" || set[j]){ el("rect", {"class": "vfr", "data-i": j}, frames); nv++; }
   }
+  placeOverlay();
   var nn = B[2] ? s.weeks * CFG.weekly : 0;
   document.getElementById("tOpas").textContent = s.opas;
   document.getElementById("tComps").textContent = plural(s.comps, "comparison", "comparisons");
@@ -948,14 +1097,16 @@ function drawTargets(){
 }
 function svgClass(){
   var c = "st" + step;
-  if (step === 19) for (var k = 1; k <= 7; k++) if (B[k]) c += " b" + k;
+  if (step === 19){ for (var k = 1; k <= 7; k++) if (B[k]) c += " b" + k; if (zoomWant()) c += " zm"; }
   svg.setAttribute("class", c);
+  zbtnSync();
 }
 /* a box or a size changed in step 19: the grid is drawn again for the cubes now on */
 function redraw19(){
   svgClass();
   if (keyNow() !== layoutKey){ layout(); hideTip(); }
   drawTargets();
+  applyZoom(false);
   moveHero(step, false);
 }
 /* the single way to reach a step, from any other step */
@@ -963,7 +1114,10 @@ function setStep(n, anim){
   n = Math.max(1, Math.min(NSTEP, n));
   var changed = n !== step;
   if (changed && step === 19 && fill19.length) stopFill19(true);
+  else if (changed && step === 19) finish19();
   step = n;
+  /* step 19 shows the zoom it had when the reader left it; nothing replays (only the one-time fill starts from zero) */
+  if (n === 19 && !(changed && anim && !isStatic && !played19)) zz = zoomWant() ? 1 : 0;
   root.removeAttribute("data-ready");
   if (!anim) root.classList.add("noanim");
   svgClass();
@@ -1009,9 +1163,18 @@ function hideTip(){
 }
 function showTip(ev){
   if (step < 18 || !L) { hideTip(); return; }
-  var r = fig.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
-  var col = Math.floor((x - L.ox) / L.px), row = Math.floor((y - L.oy) / L.py), sl = row * L.cols + col, i = sl < L.base ? sl : sl - L.gap;
-  if (col < 0 || col >= L.cols || row < 0 || sl < 0 || (sl >= L.base && sl < L.base + L.gap) || i >= D.length + extras.length) { hideTip(); return; }
+  var r = fig.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top, zoomed = step === 19 && Z && zz > 0, i;
+  if (zoomed){
+    /* zoomed: only the OPA cubes of the block can be pointed at; none while the zoom moves */
+    if (zz < 1) { hideTip(); return; }
+    var zc = Math.floor((x - Z.ox) / Z.px), zrw = Math.floor((y - Z.oy) / Z.py);
+    i = zrw * Z.c + zc;
+    if (zc < 0 || zc >= Z.c || zrw < 0 || i >= Z.n) { hideTip(); return; }
+  } else {
+    var col = Math.floor((x - L.ox) / L.px), row = Math.floor((y - L.oy) / L.py), sl = row * L.cols + col;
+    i = sl < L.base ? sl : sl - L.gap;
+    if (col < 0 || col >= L.cols || row < 0 || sl < 0 || (sl >= L.base && sl < L.base + L.gap) || i >= D.length + extras.length) { hideTip(); return; }
+  }
   if (i !== hovered){
     hideTip();
     hovered = i; cellAt(i).classList.add("hv");
@@ -1030,10 +1193,10 @@ function showTip(ev){
     }
     tip.hidden = false;
   }
-  var p = L.at(i), tw = tip.offsetWidth, th = tip.offsetHeight;
+  var p = zoomed ? Z.at(i) : L.at(i), ph = zoomed ? Z.py : L.py, tw = tip.offsetWidth, th = tip.offsetHeight;
   var left = Math.max(0, Math.min(r.width - tw, p.x - tw / 2));
-  var top = p.y - L.py / 2 - th - 6;
-  if (top + r.top < 4) top = p.y + L.py / 2 + 6;
+  var top = p.y - ph / 2 - th - 6;
+  if (top + r.top < 4) top = p.y + ph / 2 + 6;
   tip.style.left = left + "px"; tip.style.top = top + "px";
 }
 
@@ -1048,13 +1211,20 @@ document.addEventListener("click", function(ev){ if (!svg.contains(ev.target)) h
 document.getElementById("prog").addEventListener("click", function(ev){ var b = ev.target.closest("button"); if (b) go(+b.dataset.go); });
 document.getElementById("sizes").addEventListener("click", function(ev){
   var b = ev.target.closest("button"); if (!b) return;
-  if (fill19.length) stopFill19(true);
-  sizeKey = b.dataset.size; redraw19();
+  if (fill19.length) stopFill19(true); else finish19();
+  sizeKey = b.dataset.size; redraw19();   /* the zoom state stays; the block is drawn for the new size */
 });
 document.getElementById("boxes").addEventListener("change", function(ev){
   var b = ev.target.closest("input[data-box]"); if (!b) return;
-  if (fill19.length){ var mine = b.checked; stopFill19(true); boxSet(+b.dataset.box, mine); }
-  B[+b.dataset.box] = b.checked; redraw19();
+  var k = +b.dataset.box, mine = b.checked;
+  /* a click during the fill: every box on, then the reader's choice, before anything is drawn (no flash of the zoom) */
+  if (fill19.length){ fill19.forEach(clearTimeout); fill19 = []; tick19(0); for (var j = 1; j <= 7; j++) boxSet(j, true); boxSet(k, mine); }
+  finish19();
+  B[k] = mine; boxEffect(k, animate);
+});
+document.getElementById("zbtn").addEventListener("click", function(){
+  if (fill19.length) stopFill19(true); else finish19();
+  userOut = zoomWant(); zoomTo(animate);
 });
 document.getElementById("back").addEventListener("click", function(){ go(step - 1); });
 document.getElementById("next").addEventListener("click", function(){ go(step + 1); });
