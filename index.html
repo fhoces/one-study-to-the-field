@@ -840,6 +840,10 @@ function layout(){
     best.cols = Math.max(6, Math.floor(w / best.px)); best.rows = Math.ceil(rbase / best.cols) + NEWROWS;
   }
   /* the three weekly rows have rows of their own after the room of the band, so they do not move when box 1 changes */
+  /* the band still to be found runs to the end of its last row, so no row is left half full above the weekly rows
+     (his word, 26 November: "uneven rows at the bottom"); it is an illustration, its number is not given */
+  if (nt){ nt = Math.ceil(rbase / best.cols) * best.cols - D.length; base = D.length + nt; }
+  best.nt = nt;
   best.base = base; best.gap = Math.ceil(rbase / best.cols) * best.cols - base;
   extras = extraList(nt, wk * best.cols);
   var n = D.length + extras.length;
@@ -1183,7 +1187,7 @@ function drawTargets(){
   document.getElementById("nCount").textContent = nn.toLocaleString("en-US");
   document.getElementById("nCountSh").textContent = nn.toLocaleString("en-US");
   document.getElementById("nPeriod").textContent = s.period;
-  document.getElementById("qCount").textContent = (CFG.nun + nn + (B[1] ? CFG.tbf : 0)).toLocaleString("en-US");   /* the band still to be found counts as scored: an illustration */
+  document.getElementById("qCount").textContent = (CFG.nun + nn + (B[1] ? ((L && L.nt) || CFG.tbf) : 0)).toLocaleString("en-US");   /* the band still to be found counts as scored: an illustration */
   document.getElementById("vCount").textContent = nv;
   document.querySelectorAll('[data-legend="19"] li[data-box]').forEach(function(li){ li.hidden = !B[+li.dataset.box]; });
   document.querySelector('[data-legend="19"] li[data-st="unscored"]').hidden = B[3];
