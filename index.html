@@ -255,7 +255,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
   -webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* step 9: the turn from one debate to a whole field, one large tile in the centre, text only (his point 4, 26 November) */
 .stage[data-step="9"] .text{max-width:44rem}
-.panel.tile{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:44px 48px;text-align:center}
+.panel.tile{padding:44px 48px;text-align:center}   /* no box around it (his word, 26 November) */
 .panel.tile p{font-size:24px;line-height:1.45;margin:0 0 .6em;text-wrap:balance}
 .panel.tile p.field{font-size:34px;line-height:1.2;margin:0}
 .panel.tile p.field strong{font-weight:750}
@@ -611,7 +611,7 @@ function placeOverlay(){
     var x1 = a.x + ux * off, y1 = a.y + uy * off, x2 = b.x - ux * off, y2 = b.y - uy * off, ex = x1 + (x2 - x1) * gr, ey = y1 + (y2 - y1) * gr;
     var ln = g.querySelectorAll(".seg"), dt = g.querySelectorAll(".segd"), rr = 1.4 + 1.2 * zz;
     /* three stripes in the OPA colours, gold on top, then blue, then navy (his word, 26 November): thick enough to see */
-    var sw = Math.max(4.8, a.u * 0.39), px = -uy * sw, py = ux * sw;
+    var sw = Math.max(1 + 3.8 * zz, a.u * 0.39 * (0.5 + 0.5 * zz))   /* thinner in the whole census, where cubes are small (his note, 26 November) */, px = -uy * sw, py = ux * sw;
     ln.forEach(function(l, m){ var o = m - 1; put(l, {x1: x1 + px * o, y1: y1 + py * o, x2: ex + px * o, y2: ey + py * o}); l.style.strokeWidth = (sw + 0.3) + "px"; });
     put(dt[0], {cx: x1, cy: y1, r: rr}); put(dt[1], {cx: x2, cy: y2, r: rr});
     dt[1].style.opacity = gr >= 1 ? 1 : 0;
