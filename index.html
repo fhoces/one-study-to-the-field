@@ -68,7 +68,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 @media (min-width: 761px){
   .panel[data-step="19"] h2{font-size:23px}
   .panel[data-step="19"] .funds,.panel[data-step="19"] .note{font-size:14px;line-height:1.4}
-  .panel[data-step="19"] ol#boxes{font-size:14px;line-height:1.35}
+  .panel[data-step="19"] ul#parts{font-size:14px;line-height:1.35}
   .panel[data-step="19"] .legend{grid-template-columns:1fr 1fr;column-gap:16px;row-gap:2px;font-size:13px;line-height:1.3}
   .panel[data-step="19"] .legend li.wk{grid-column:1 / -1}
 }
@@ -86,13 +86,13 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 .panel .bigscore strong{font-size:24px;font-weight:750;color:var(--ink);white-space:nowrap}
 .panel ul.layers a{color:inherit;text-decoration-color:var(--accent);text-decoration-thickness:2px}
 .panel ul.layers a strong{color:var(--accent)}
-.panel ol#boxes{list-style:none;padding-left:0}
-.panel ol#boxes li{padding-left:0;margin:0 0 2px}
-.panel ol#boxes li::before{display:none}
-.panel ol#boxes label{display:flex;gap:7px;align-items:flex-start;cursor:pointer}
-.panel ol#boxes li{transition:background-color .25s ease}
-.panel ol#boxes li.ticking{font-weight:700;background:color-mix(in srgb, var(--accent) 16%, transparent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);border-radius:3px}
-.panel ol#boxes input{width:16px;height:16px;margin:1px 0 0;flex:none;accent-color:var(--accent);cursor:pointer}
+.panel ul#parts{list-style:disc;padding-left:1.2em}
+.panel ul#parts li{padding-left:0;margin:0 0 2px;transition:background-color .25s ease}
+.panel ul#parts li::before{display:none}
+/* step 19 (his words, 26 November): the parts are bullets that show one at a time, forward. A part not shown yet keeps its
+   room (visibility, so the column does not move and a screen reader does not read it); the newest is bold on a light tint */
+.panel ul#parts li.nr,.legend[data-legend="19"] li.nr{visibility:hidden}
+.panel ul#parts li.cur{font-weight:700;background:color-mix(in srgb, var(--accent) 16%, transparent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);border-radius:3px}
 .fig{grid-column:2;grid-row:2 / 4;position:relative;min-width:0;min-height:0}
 .fig svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible;touch-action:pan-y}
 .nav{grid-column:1;grid-row:3;display:flex;gap:8px;align-items:center}
@@ -111,17 +111,17 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 .c.s-closed .fl,.c.s-rerun .fl{color:var(--k-left)}
 .c.s-closed .fr,.c.s-rerun .fr{color:var(--k-right)}
 .c.s-rerun .ft{color:var(--r-top)} .c.s-rerun .fl{color:var(--r-left)} .c.s-rerun .fr{color:var(--r-right)}
-/* step 19: unscored and new studies scored, level not known (box 3); green materials layer on closed cubes made reproducible (box 4) */
+/* step 19: unscored and new studies scored, level not known (part 3); green materials layer on closed cubes made reproducible (part 4) */
 #svg.st19.b3 .c.s-unscored .ft,#svg.st19.b3 .c.s-new .ft{color:var(--q-top)}
 #svg.st19.b3 .c.s-unscored .fl,#svg.st19.b3 .c.s-new .fl{color:var(--q-left)}
 #svg.st19.b3 .c.s-unscored .fr,#svg.st19.b3 .c.s-new .fr{color:var(--q-right)}
 #svg.st19.b3 .c.s-unscored .o{stroke:var(--edge)}
 .c.s-new .o{stroke:var(--accent)}
 .c.s-tbf .o{stroke:var(--muted);stroke-dasharray:2 2}
-/* box 3 on: the band still to be found is scored too, the same grey; the dashed outline stays (his word, 25 November evening) */
+/* part 3 on: the band still to be found is scored too, the same grey; the dashed outline stays (his word, 25 November evening) */
 #svg.st19.b3 .c.s-tbf .ft{color:var(--q-top)} #svg.st19.b3 .c.s-tbf .fl{color:var(--q-left)} #svg.st19.b3 .c.s-tbf .fr{color:var(--q-right)}
 .c.xoff{display:none}
-/* box 4: a study made reproducible is drawn as the re-runnable of today, the whole cube green, no dashed outline (his word, 25 November evening) */
+/* part 4: a study made reproducible is drawn as the re-runnable of today, the whole cube green, no dashed outline (his word, 25 November evening) */
 .c.rp .ft{color:var(--r-top)} .c.rp .fl{color:var(--r-left)} .c.rp .fr{color:var(--r-right)}
 .c.rp .o{stroke:var(--edge)}
 .c.s-opa .L0 .ft,.c.tg .L0 .ft{color:var(--m-top)}
@@ -213,6 +213,8 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
 #svg.st17 .c.s-rerun .ft{color:var(--k-top)} #svg.st17 .c.s-rerun .fl{color:var(--k-left)} #svg.st17 .c.s-rerun .fr{color:var(--k-right)}
 /* step 19: the OPA targets turn one at a time (the script adds the class one cube after the other), so no delay by index */
 #svg.st19 .c.tg .f,#svg.st19 .c.tg .o{transition-delay:0s;transition-duration:.3s}
+/* once the comparisons show (part 7), the target OPAs lose their dashed outline (his word, 26 November) */
+#svg.st19.b7 .c.tg .o{stroke:none}
 /* step 19 zoom (his word, 25 November night): the OPA cubes gather into a block that fills the figure; the rest fades */
 #svg.zm #cells .c:not(.mb),#svg.zm #extra .c,#svg.zm #frames .vfr.nm{opacity:0;pointer-events:none}
 .vfr{transition:opacity .4s ease}
@@ -294,7 +296,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
   .legend[data-legend="19"] li[data-st="tbf"]{grid-column:1 / -1}
   .legend[data-legend="19"]{font-size:12px;row-gap:2px;column-gap:12px}
   .panel[data-step="19"] .funds,.panel[data-step="19"] .note{font-size:13.5px;line-height:1.35}
-  /* steps 15 to 19: one text row, as tall as the step 19 panel with every box on (measured by the script, --tg), so the figure,
+  /* steps 15 to 19: one text row, as tall as the step 19 panel with every part shown (measured by the script, --tg), so the figure,
      and the census grid in it, keep one size and place (his point 8, 26 November; short phones: see measureT19) */
   .stage.gs{grid-template-rows:auto var(--tg,auto) minmax(0,1fr) auto}
   .panel[data-step="6"] .small{margin-bottom:4px;line-height:1.35}
@@ -302,8 +304,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
   .panel[data-step="19"] .exrow .lg{display:none} .panel[data-step="19"] .exrow .sh{display:inline}
   .panel[data-step="19"] .exrow .example,.panel[data-step="19"] .exrow .sizes{margin:0}
   .prog button{width:5px} .prog{gap:2px}
-  .panel ol#boxes li{margin:0 0 1px}
-  .panel ol#boxes input{width:15px;height:15px;margin-top:0}
+  .panel ul#parts li{margin:0 0 1px}
   .panel .bigscore{font-size:17px}
   .panel .bigscore strong{font-size:21px}
   .plab.big{font-size:16px}
@@ -478,20 +479,20 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacS
       <h2>What the proposal funds.</h2>
       <!-- from the two-page proposal, draft 10 of 25 November 2026, "What this proposal asks to fund" -->
       <p class="funds">Every stage of the work, not only the OPAs. <a class="twopager" id="twopager" href="https://docs.google.com/document/d/143VmIYIYGVHTUScCy2xvYIklV7D-GaWvzIPUTvLJ5Q0/edit" target="_blank" rel="noopener">Read the two-page proposal</a>, or <a href="https://fhoces.github.io/opa-ai-economy/" target="_blank" rel="noopener">see the census website</a>.</p>
-      <ol class="stages" id="boxes" aria-label="What the proposal funds. Uncheck a part to take it out of the picture.">
-        <li><label><input type="checkbox" data-box="1" checked> Complete the census.</label></li>
-        <li><label><input type="checkbox" data-box="2" checked> Keep it current with a weekly update.</label></li>
-        <li><label><input type="checkbox" data-box="3" checked> Score every study in it.</label></li>
-        <li><label><input type="checkbox" data-box="4" checked> Make a subset of the studies reproducible.</label></li>
-        <li><label><input type="checkbox" data-box="5" checked> Build OPAs for some of them: up to 60 in two years.</label></li>
-        <li><label><input type="checkbox" data-box="6" checked> Verify the results.</label></li>
-        <li><label><input type="checkbox" data-box="7" checked> Build comparisons of some OPAs: 6 in two years.</label></li>
-      </ol>
+      <ul class="stages" id="parts" aria-label="What the proposal funds" aria-live="polite">
+        <li class="nr" data-part="1">Complete the census.</li>
+        <li class="nr" data-part="2">Keep it current with a weekly update.</li>
+        <li class="nr" data-part="3">Score every study in it.</li>
+        <li class="nr" data-part="4">Make a subset of the studies reproducible.</li>
+        <li class="nr" data-part="5">Build OPAs for some of them: up to 60 in two years.</li>
+        <li class="nr" data-part="6">Verify the results.</li>
+        <li class="nr" data-part="7">Build comparisons of some OPAs: 6 in two years.</li>
+      </ul>
       <div class="exrow"><p class="example"><span class="lg">One example of how the funding could be used:</span><span class="sh">One example:</span></p>
       <div class="sizes" id="sizes" role="group" aria-label="An example of how the funding could be used"></div></div>
       <p class="note"><strong>Target: <span id="tOpas"></span> OPAs and <span id="tComps"></span>.</strong> An illustration, not work done.<span class="advisers"> Which analyses are opened will be decided with two senior advisers.</span></p>
       <ul class="legend" data-legend="19">
-        <li class="lh lt">Target (dashed), not done</li>
+        <li class="lh lt nr">Target (dashed), not done</li>
         <li data-st="tbf" class="tgt" data-box="1"><span class="sw"></span><span><span class="lg">Still to be found: how many is not known</span><span class="sh">Still to be found: how many is not known</span></span><b></b></li>
         <li data-st="new" class="tgt wk" data-box="2"><span class="sw"></span><span><span class="lg">New, weekly update: 15 a week, about <span id="nCount"></span> <span id="nPeriod"></span> (three rows shown)</span><span class="sh">New, weekly update (3 rows shown)</span></span><b class="sh" id="nCountSh"></b></li>
         <li data-st="q" class="tgt" data-box="3"><span class="sw"></span><span><span class="lg">Scored, level not known yet</span><span class="sh">Scored, level unknown</span></span><b id="qCount"></b></li>
@@ -545,32 +546,20 @@ if (!animate) root.classList.add("noanim");
 var sizeKey = CFG.sizes.some(function(s){ return s.key === q.get("size"); }) ? q.get("size") : CFG.def;
 var pair = null, people = null, dtwin = null, step = 0, W = 0, H = 0, L = null, cells = [], hero = null, heroLayers = [], heroLab = null, links = null;
 var cur = null, raf = 0, hovered = -1, moving = false;
-/* step 19 plays once per page load: the boxes start empty and tick one every two seconds (his words, 25 November);
-   the item just ticked is bold on a light tint until the next one ticks, and no item keeps it after the fill */
-var played19 = false, fill19 = [], FILL_MS = 2000;
-function boxSet(k, on){ B[k] = on; var i = document.querySelector('#boxes input[data-box="' + k + '"]'); if (i) i.checked = on; }
-function tick19(k){
-  document.querySelectorAll("#boxes li").forEach(function(li, j){ li.classList.toggle("ticking", j + 1 === k); });
-}
-function stopFill19(finish){
-  fill19.forEach(clearTimeout); fill19 = []; tick19(0);
-  if (finish){ for (var k = 1; k <= 7; k++) boxSet(k, true); }
-  finish19();
-}
-function playFill19(){
-  played19 = true;
-  finish19();
-  for (var k = 1; k <= 7; k++) boxSet(k, false);
-  zz = 0; redraw19();
-  for (var j = 1; j <= 7; j++) (function(k){
-    fill19.push(setTimeout(function(){ if (step !== 19) return; boxSet(k, true); tick19(k); boxEffect(k, animate); }, k * FILL_MS));
-  })(j);
-  fill19.push(setTimeout(function(){ fill19 = []; tick19(0); }, 7 * FILL_MS + 1000));
-}
+/* step 19 (his words, 26 November): the seven parts show one at a time, each with a forward action (Next, an arrow key,
+   PageDown, a scroll stop), each with its part of the picture; Back takes the newest off. They are sub-steps of step 19,
+   not steps: the counter and the progress bar stay at 19. rv is how many are shown (0 to 7); B[k] is k <= rv.
+   A position counts steps and parts together: 1 to 19 are the steps (19 with no part shown), 20 to 26 parts 1 to 7. */
+var NPART = 7, rv = NPART;
+var shownQ = parseInt(q.get("shown") || "", 10);
+if (shownQ >= 0 && shownQ <= NPART) rv = shownQ;
+function posOf(n, r){ return n < 19 ? n : 19 + r; }
+function fromPos(p){ p = Math.max(1, Math.min(19 + NPART, p)); return p <= 19 ? {n: p, r: 0} : {n: 19, r: p - 19}; }
+function pos(){ return posOf(step, rv); }
 /* step 19 zoom (his words, 25 November night: "On the last two click into the opas and comparison. Zoom into only those
    hexagons and change them."). The OPA cubes (today's OPA and the targets, the first cells of the grid) gather into a
    block that fills the figure while the rest of the census fades; the grid is not cropped, because the targets fill
-   whole rows of it. zz runs from 0 (the whole census) to 1 (zoomed). The figure stays zoomed while box 5 is on, unless
+   whole rows of it. zz runs from 0 (the whole census) to 1 (zoomed). The figure stays zoomed while part 5 is shown, unless
    the reader asks for the whole census with the button. */
 var zz = 0, Z = null, userOut = q.get("zoom") === "out", tgN = Infinity, segP = [], a19 = [], zr = 0, sr = 0;
 var ZOOM_MS = 800, TURN_MS = 1000, SEG_MS = 200, SEG_STAG = 25, ZX = 1.75, ZY = 1.42, ZCAP = 46;
@@ -606,7 +595,7 @@ function applyZoom(withHero){
   if (withHero && !moving){ var h0 = zpos(0); applyHero({x: h0.x, y: h0.y, s: h0.u, g: [0, 0, 0, 0], lab: 0, dx: NODX, dy: NODX}); }
   placeOverlay();
 }
-/* the box 6 frames and the comparison segments follow their cubes */
+/* the part 6 frames and the comparison segments follow their cubes */
 function placeOverlay(){
   if (step !== 19) return;
   frames.querySelectorAll(".vfr").forEach(function(r){
@@ -618,11 +607,11 @@ function placeOverlay(){
     var a = zpos(+g.dataset.a), b = zpos(+g.dataset.b), vx = b.x - a.x, vy = b.y - a.y, d = Math.sqrt(vx * vx + vy * vy) || 1;
     /* zoomed in, from the edge of one cube to the edge of the other (as the arrows of step 7), never shorter than 8 px (on a
        short phone it starts inside the cubes); in the whole census the cubes touch, so it runs from centre to centre */
-    var off = zz * Math.max(0, Math.min(a.u * C * 1.08 + 2, (d - 8) / 2)), ux = vx / d, uy = vy / d, gr = segP[k] === undefined ? 1 : segP[k];
+    var off = zz * Math.max(0, Math.min(a.u * C * 0.99, (d - 8) / 2)), ux = vx / d, uy = vy / d, gr = segP[k] === undefined ? 1 : segP[k];
     var x1 = a.x + ux * off, y1 = a.y + uy * off, x2 = b.x - ux * off, y2 = b.y - uy * off, ex = x1 + (x2 - x1) * gr, ey = y1 + (y2 - y1) * gr;
     var ln = g.querySelectorAll(".seg"), dt = g.querySelectorAll(".segd"), rr = 1.4 + 1.2 * zz;
     /* three stripes in the OPA colours, gold on top, then blue, then navy (his word, 26 November): thick enough to see */
-    var sw = Math.max(2.4, a.u * 0.195), px = -uy * sw, py = ux * sw;
+    var sw = Math.max(4.8, a.u * 0.39), px = -uy * sw, py = ux * sw;
     ln.forEach(function(l, m){ var o = m - 1; put(l, {x1: x1 + px * o, y1: y1 + py * o, x2: ex + px * o, y2: ey + py * o}); l.style.strokeWidth = (sw + 0.3) + "px"; });
     put(dt[0], {cx: x1, cy: y1, r: rr}); put(dt[1], {cx: x2, cy: y2, r: rr});
     dt[1].style.opacity = gr >= 1 ? 1 : 0;
@@ -643,7 +632,7 @@ function zoomTo(anim, then){
   hideTip();
   zr = requestAnimationFrame(fr);
 }
-/* box 5: the targets turn into OPAs one by one, all within about a second, whatever their number */
+/* part 5: the targets turn into OPAs one by one, all within about a second, whatever their number */
 function setTg(){
   var set = {};
   if (step === 19 && B[5]) targets().forEach(function(i, r){ if (r < tgN) set[i] = 1; });
@@ -657,7 +646,7 @@ function revealTargets(anim){
     a19.push(setTimeout(function(){ if (step !== 19) return; tgN = r === n ? Infinity : r; setTg(); }, (r - 1) * TURN_MS / n));
   })(r);
 }
-/* box 7: each segment grows from one cube to the other, one after the other */
+/* part 7: each segment grows from one cube to the other, one after the other */
 function growSegs(anim){
   var k = links.querySelectorAll(".cmp").length;
   cancelAnimationFrame(sr); sr = 0; segP = [];
@@ -679,7 +668,7 @@ function finish19(){
   tgN = Infinity; segP = [];
   if (step === 19){ zz = zoomWant() ? 1 : 0; redraw19(); }
 }
-/* a box was checked or unchecked (by the fill or the reader): its part of the picture, then the zoom */
+/* a part was shown or taken off (by a forward or a back action): its part of the picture, then the zoom */
 function boxEffect(k, anim){
   if ((k === 5 || k === 7) && B[k]) userOut = false;
   if (k === 5 && B[5] && anim) tgN = 0;
@@ -695,7 +684,7 @@ function zbtnSync(){
   b.textContent = z ? "Show the whole census" : "Zoom in on the OPAs";
   b.setAttribute("aria-pressed", z ? "true" : "false");
 }
-/* step 19: the check boxes (all on at the start), the extra cubes (still to be found, new from the weekly update), the frames */
+/* step 19: the parts shown (all seven until step 19 is reached by Next or scroll), the extra cubes (still to be found, new from the weekly update), the frames */
 var B = {1: true, 2: true, 3: true, 4: true, 5: true, 6: true, 7: true}, xg = null, frames = null, tbfCells = [], newCells = [], extras = [], layoutKey = "";
 
 function el(tag, attrs, parent){
@@ -764,7 +753,7 @@ function build(){
       el("rect", {"class": "vfr", x: -1.0, y: -1.15, width: 2.0, height: 2.3}, s);
     } else if (st === "link"){
       [-0.7, 0.7].forEach(function(x){ var cg = el("g", {"class": "c s-opa", transform: "translate(" + x + " 0) scale(0.4)"}, s); cube(cg, false); });
-      [["sg", -0.165], ["sd", 0], ["sm", 0.165]].forEach(function(q){ el("line", {"class": "seg " + q[0], x1: -0.36, y1: q[1], x2: 0.36, y2: q[1], style: "stroke-width:.18px"}, s); });
+      [["sg", -0.3], ["sd", 0], ["sm", 0.3]].forEach(function(q){ el("line", {"class": "seg " + q[0], x1: -0.36, y1: q[1], x2: 0.36, y2: q[1], style: "stroke-width:.32px"}, s); });
     } else {
       cube(el("g", {"class": "c " + (st === "tg" ? "s-closed tg" : st === "rp" ? "s-closed rp" : "s-" + st)}, s), false);
     }
@@ -777,7 +766,6 @@ function build(){
     prog.appendChild(b);
   }
   var num = document.createElement("span"); num.className = "num"; num.id = "num"; prog.appendChild(num);
-  document.querySelectorAll("#boxes input").forEach(function(b){ b.checked = true; });
   var sz = document.getElementById("sizes");
   CFG.sizes.forEach(function(s){
     var b = document.createElement("button");
@@ -787,17 +775,17 @@ function build(){
   drawTargets();
 }
 /* phones (one column): the text row of steps 15 to 19 keeps one height, so the figure, and the census in it, keep one size
-   and place (his point 8, 26 November). The height is that of the step 19 panel with every box and legend line on,
+   and place (his point 8, 26 November). The height is that of the step 19 panel with every part and legend line shown,
    measured on a hidden copy. On a short phone (under 740 px tall) that would leave the census a strip of 3 px cubes,
    so there steps 15 to 18 keep the height of the tallest of their own panels and step 19 has its own (smaller) grid;
-   inside step 19 the boxes still never rescale it. */
+   inside step 19 the parts shown never rescale it. */
 var tKey = "", tH = {}, SHORT = 740;
 function panelH(n, text){
   var c = document.querySelector('.panel[data-step="' + n + '"]').cloneNode(true);
   c.removeAttribute("hidden");
   c.querySelectorAll("[hidden]").forEach(function(e){ e.removeAttribute("hidden"); });
-  c.querySelectorAll("input").forEach(function(e){ e.checked = true; });
-  /* the copy keeps its ids for a moment: the styles of the list of boxes hang on them; it is removed at once */
+  c.querySelectorAll(".nr").forEach(function(e){ e.classList.remove("nr"); });
+  /* the copy keeps its ids for a moment: the styles of the list of parts hang on them; it is removed at once */
   c.style.cssText = "position:absolute;left:0;top:0;visibility:hidden;animation:none;width:" + text.clientWidth + "px";
   text.appendChild(c);
   var hh = Math.ceil(c.getBoundingClientRect().height);
@@ -821,11 +809,11 @@ function layout(){
   var r = fig.getBoundingClientRect();
   W = Math.max(120, r.width); H = Math.max(120, r.height);
   svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-  /* step 19: box 1 adds the band still to be found; box 2 adds three rows of new cubes, a row of their own each, at the
+  /* step 19: part 1 adds the band still to be found; part 2 adds three rows of new cubes, a row of their own each, at the
      bottom (his word, 25 November night: "just show two or three more rows"); the legend keeps the real number.
      Since 26 November (his point 8: "I don't like the changes in the size of the census") the grid is laid out once
      for every step, with room kept for the band, the three rows and the strip of the zoom button at the top, so the
-     census keeps one cube size and one place from step 15 to step 19 whatever the boxes; the extra cubes fill the
+     census keeps one cube size and one place from step 15 to step 19 whatever the parts shown; the extra cubes fill the
      room kept for them. */
   var nt = step === 19 && B[1] ? CFG.tbf : 0, wk = step === 19 && B[2] ? NEWROWS : 0, base = D.length + nt;
   var rbase = D.length + CFG.tbf, top = band();
@@ -839,7 +827,7 @@ function layout(){
     best.u = 13; best.px = 13 * 2 * C / 0.84; best.py = 2 * 13 * 1.1 + 1;
     best.cols = Math.max(6, Math.floor(w / best.px)); best.rows = Math.ceil(rbase / best.cols) + NEWROWS;
   }
-  /* the three weekly rows have rows of their own after the room of the band, so they do not move when box 1 changes */
+  /* the three weekly rows have rows of their own after the room of the band, so they do not move when part 1 changes */
   /* the band still to be found runs to the end of its last row, so no row is left half full above the weekly rows
      (his word, 26 November: "uneven rows at the bottom"); it is an illustration, its number is not given */
   if (nt){ nt = Math.ceil(rbase / best.cols) * best.cols - D.length; base = D.length + nt; }
@@ -867,8 +855,8 @@ function layout(){
   applyZoom(false);
   layoutKey = keyNow();
 }
-/* step 19: the cubes drawn after the census. Box 1 adds a band still to be found (its size is an illustration),
-   box 2 three rows of new studies of the weekly update (an illustration; the legend gives 15 a week). Made only when first needed. */
+/* step 19: the cubes drawn after the census. Part 1 adds a band still to be found (its size is an illustration),
+   part 2 three rows of new studies of the weekly update (an illustration; the legend gives 15 a week). Made only when first needed. */
 function extraList(nt, nn){
   while (tbfCells.length < nt) tbfCells.push(extraCell("tbf", tbfCells.length));
   while (newCells.length < nn) newCells.push(extraCell("new", newCells.length));
@@ -1153,7 +1141,7 @@ function pairs(){
   }
   return out;
 }
-/* step 19, box 4: closed analyses made reproducible, most cited first (the closed ones follow the re-runnable in the grid) */
+/* step 19, part 4: closed analyses made reproducible, most cited first (the closed ones follow the re-runnable in the grid) */
 function reproList(){
   var out = [], n = size().repro;
   for (var i = 0; i < D.length && out.length < n; i++) if (D[i].st === "closed") out.push(i);
@@ -1172,7 +1160,7 @@ function drawTargets(){
     var g = el("g", {"class": "cmp", "data-a": ab[0], "data-b": ab[1]}, links);
     ["sg", "sd", "sm"].forEach(function(c){ el("line", {"class": "seg " + c}, g); }); el("circle", {"class": "segd"}, g); el("circle", {"class": "segd"}, g);
   });
-  /* box 6: a dashed frame around every analysis that can be re-run and every OPA, today's and the targets */
+  /* part 6: a dashed frame around every analysis that can be re-run and every OPA, today's and the targets */
   var nv = 0;
   if (f && B[6]) for (var j = 0; j < D.length; j++){
     if (D[j].st === "rerun" || D[j].st === "opa" || set[j]){ el("rect", {"class": "vfr", "data-i": j}, frames); nv++; }
@@ -1189,7 +1177,8 @@ function drawTargets(){
   document.getElementById("nPeriod").textContent = s.period;
   document.getElementById("qCount").textContent = (CFG.nun + nn + (B[1] ? ((L && L.nt) || CFG.tbf) : 0)).toLocaleString("en-US");   /* the band still to be found counts as scored: an illustration */
   document.getElementById("vCount").textContent = nv;
-  document.querySelectorAll('[data-legend="19"] li[data-box]').forEach(function(li){ li.hidden = !B[+li.dataset.box]; });
+  document.querySelectorAll('[data-legend="19"] li[data-box]').forEach(function(li){ li.classList.toggle("nr", !B[+li.dataset.box]); });
+  document.querySelector('[data-legend="19"] li.lt').classList.toggle("nr", !rv);
   document.querySelector('[data-legend="19"] li[data-st="unscored"]').hidden = B[3];
   document.querySelectorAll("#sizes button").forEach(function(b){
     b.setAttribute("aria-pressed", b.dataset.size === sizeKey ? "true" : "false");
@@ -1199,9 +1188,10 @@ function svgClass(){
   var c = "st" + step;
   if (step === 19){ for (var k = 1; k <= 7; k++) if (B[k]) c += " b" + k; if (zoomWant()) c += " zm"; }
   svg.setAttribute("class", c);
+  svg.setAttribute("data-shown", step === 19 ? rv : "");   /* read by the checks */
   zbtnSync();
 }
-/* a box or a size changed in step 19: the grid is drawn again for the cubes now on */
+/* a part or a size changed in step 19: the grid is drawn again for the cubes now on */
 function redraw19(){
   svgClass();
   if (keyNow() !== layoutKey){ layout(); hideTip(); }
@@ -1210,14 +1200,20 @@ function redraw19(){
   moveHero(step, false);
 }
 /* the single way to reach a step, from any other step */
-function setStep(n, anim){
+function setStep(n, anim, r){
   n = Math.max(1, Math.min(NSTEP, n));
   var changed = n !== step;
-  if (changed && step === 19 && fill19.length) stopFill19(true);
-  else if (changed && step === 19) finish19();
+  if (changed && step === 19) finish19();
   step = n;
-  /* step 19 shows the zoom it had when the reader left it; nothing replays (only the one-time fill starts from zero) */
-  if (n === 19 && !(changed && anim && !isStatic && !played19)) zz = zoomWant() ? 1 : 0;
+  /* step 19 is reached with r parts shown: 0 by Next or scroll from step 18, 7 by the progress bar (and on a static page,
+     unless ?shown= says otherwise); the zoom is where those parts put it, at once */
+  if (n === 19 && changed){
+    rv = r === undefined ? NPART : r;
+    for (var k = 1; k <= NPART; k++) B[k] = k <= rv;
+    if (!isStatic) userOut = false;
+    tgN = Infinity; zz = zoomWant() ? 1 : 0;
+    partsSync();
+  }
   root.removeAttribute("data-ready");
   if (!anim) root.classList.add("noanim");
   svgClass();
@@ -1230,27 +1226,55 @@ function setStep(n, anim){
   if (keyNow() !== layoutKey) layout();
   document.querySelectorAll("#prog button").forEach(function(b){ b.classList.toggle("on", +b.dataset.go <= n); b.setAttribute("aria-current", +b.dataset.go === n ? "step" : "false"); });
   document.getElementById("num").textContent = n + " / " + NSTEP;
-  document.getElementById("back").disabled = n === 1;
-  document.getElementById("next").disabled = n === NSTEP;
+  navSync();
   hideTip();
   drawTargets();
   var p = moveHero(n, anim && changed);
   if (!anim){ void svg.getBoundingClientRect(); if (animate) root.classList.remove("noanim"); }
   p.then(function(){ if (step === n) setTimeout(function(){ if (step === n) root.setAttribute("data-ready", "1"); }, anim ? 150 : 0); });
-  if (n === 19 && changed && anim && !isStatic && !played19) playFill19();
+}
+function navSync(){
+  document.getElementById("back").disabled = step === 1;
+  document.getElementById("next").disabled = step === NSTEP && rv === NPART;
+}
+/* the bullets of step 19: the ones shown, and the newest of them highlighted */
+function partsSync(){
+  document.querySelectorAll("#parts li").forEach(function(li, j){
+    li.classList.toggle("nr", j >= rv);
+    li.classList.toggle("cur", j === rv - 1);
+  });
+}
+/* show r parts of step 19: one more or one less takes its part on or off the picture; a jump of several
+   (a fast scroll) sets them all at once */
+function setParts(r, anim){
+  r = Math.max(0, Math.min(NPART, r));
+  if (step !== 19 || r === rv) return;
+  finish19();
+  var from = rv;
+  rv = r;
+  for (var k = 1; k <= NPART; k++) B[k] = k <= rv;
+  partsSync(); navSync();
+  if (Math.abs(r - from) === 1) boxEffect(Math.max(r, from), anim);
+  else {
+    if ((from < 5 && r >= 5) || (from < 7 && r >= 7)) userOut = false;
+    tgN = Infinity; zz = zoomWant() ? 1 : 0;
+    redraw19();
+  }
 }
 function stepLen(){ return Math.round(window.innerHeight * 0.8); }
-function sizeTrack(){ track.style.height = isStatic ? "" : (document.getElementById("stage").offsetHeight + (NSTEP - 1) * stepLen()) + "px"; }
-function go(n){
-  n = Math.max(1, Math.min(NSTEP, n));
-  if (isStatic){ setStep(n, false); return; }
-  setStep(n, animate);
-  window.scrollTo({top: (n - 1) * stepLen(), behavior: "instant"});
+function sizeTrack(){ track.style.height = isStatic ? "" : (document.getElementById("stage").offsetHeight + (NSTEP - 1 + NPART) * stepLen()) + "px"; }
+/* the single way to move: to a position (a step, or a part of step 19) */
+function goPos(p){
+  var t = fromPos(p), a = isStatic ? false : animate;
+  if (t.n === step && step === 19) setParts(t.r, a); else setStep(t.n, a, t.r);
+  if (!isStatic) window.scrollTo({top: (posOf(step, rv) - 1) * stepLen(), behavior: "instant"});
 }
 function onScroll(){
   if (isStatic) return;
-  var n = Math.round(window.scrollY / stepLen()) + 1;
-  if (n !== step) setStep(n, animate);
+  var p = Math.max(1, Math.min(19 + NPART, Math.round(window.scrollY / stepLen()) + 1));
+  if (p === pos()) return;
+  var t = fromPos(p);
+  if (t.n === step && step === 19) setParts(t.r, animate); else setStep(t.n, animate, t.r);
 }
 /* tooltip */
 function label(r, i){
@@ -1311,32 +1335,25 @@ svg.addEventListener("pointermove", function(ev){ if (ev.pointerType !== "touch"
 svg.addEventListener("pointerleave", function(ev){ if (ev.pointerType !== "touch") hideTip(); });
 svg.addEventListener("click", function(ev){ var was = hovered; showTip(ev); ev.stopPropagation(); });
 document.addEventListener("click", function(ev){ if (!svg.contains(ev.target)) hideTip(); });
-document.getElementById("prog").addEventListener("click", function(ev){ var b = ev.target.closest("button"); if (b) go(+b.dataset.go); });
+/* a dash of the progress bar goes to its step; the dash of step 19 shows all seven parts, the full picture */
+document.getElementById("prog").addEventListener("click", function(ev){ var b = ev.target.closest("button"); if (b) goPos(+b.dataset.go === 19 ? 19 + NPART : +b.dataset.go); });
 document.getElementById("sizes").addEventListener("click", function(ev){
   var b = ev.target.closest("button"); if (!b) return;
-  if (fill19.length) stopFill19(true); else finish19();
-  sizeKey = b.dataset.size; redraw19();   /* the zoom state stays; the block is drawn for the new size */
-});
-document.getElementById("boxes").addEventListener("change", function(ev){
-  var b = ev.target.closest("input[data-box]"); if (!b) return;
-  var k = +b.dataset.box, mine = b.checked;
-  /* a click during the fill: every box on, then the reader's choice, before anything is drawn (no flash of the zoom) */
-  if (fill19.length){ fill19.forEach(clearTimeout); fill19 = []; tick19(0); for (var j = 1; j <= 7; j++) boxSet(j, true); boxSet(k, mine); }
   finish19();
-  B[k] = mine; boxEffect(k, animate);
+  sizeKey = b.dataset.size; redraw19();   /* the parts shown and the zoom state stay; the block is drawn for the new size */
 });
 document.getElementById("zbtn").addEventListener("click", function(){
-  if (fill19.length) stopFill19(true); else finish19();
+  finish19();
   userOut = zoomWant(); zoomTo(animate);
 });
-document.getElementById("back").addEventListener("click", function(){ go(step - 1); });
-document.getElementById("next").addEventListener("click", function(){ go(step + 1); });
+document.getElementById("back").addEventListener("click", function(){ goPos(pos() - 1); });
+document.getElementById("next").addEventListener("click", function(){ goPos(pos() + 1); });
 document.addEventListener("keydown", function(ev){
   if (ev.altKey || ev.ctrlKey || ev.metaKey) return;
   if (ev.key === "Escape") hideTip();
   if (ev.target && /^(INPUT|TEXTAREA|SELECT)$/.test(ev.target.tagName)) return;
-  if (ev.key === "ArrowRight" || ev.key === "ArrowDown" || ev.key === "PageDown") { ev.preventDefault(); go(step + 1); }
-  if (ev.key === "ArrowLeft" || ev.key === "ArrowUp" || ev.key === "PageUp") { ev.preventDefault(); go(step - 1); }
+  if (ev.key === "ArrowRight" || ev.key === "ArrowDown" || ev.key === "PageDown") { ev.preventDefault(); goPos(pos() + 1); }
+  if (ev.key === "ArrowLeft" || ev.key === "ArrowUp" || ev.key === "PageUp") { ev.preventDefault(); goPos(pos() - 1); }
 });
 window.addEventListener("scroll", onScroll, {passive: true});
 var rz = 0;
@@ -1349,7 +1366,9 @@ function relayout(){
 }
 if (window.ResizeObserver) new ResizeObserver(function(){ cancelAnimationFrame(rz); rz = requestAnimationFrame(relayout); }).observe(fig);
 else window.addEventListener("resize", relayout);
-setStep(isStatic ? staticStep : Math.round(window.scrollY / stepLen()) + 1, false);
+if (isStatic) setStep(staticStep, false, rv);
+else { var p0 = fromPos(Math.round(window.scrollY / stepLen()) + 1); setStep(p0.n, false, p0.r); }
+partsSync(); navSync();
 })();
 </script>
 </body>
